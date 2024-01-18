@@ -216,11 +216,13 @@ function ReimbursementAccountPage({reimbursementAccount, route, onfidoToken, pol
         }
     }
 
-    // Update the data that is returned from back-end to draft value
-    const draftStep = reimbursementAccount.draftStep;
-    if (draftStep) {
-        BankAccounts.updateReimbursementAccountDraft(getBankAccountFields(getFieldsForStep(draftStep)));
-    }
+    useEffect(() => {
+        // Update the data that is returned from back-end to draft value
+        const draftStep = reimbursementAccount.draftStep;
+        if (draftStep) {
+            BankAccounts.updateReimbursementAccountDraft(getBankAccountFields(getFieldsForStep(draftStep)));
+        }
+    }, [getBankAccountFields, reimbursementAccount.draftStep]);
 
     /**
      * Returns true if a VBBA exists in any state other than OPEN or LOCKED
