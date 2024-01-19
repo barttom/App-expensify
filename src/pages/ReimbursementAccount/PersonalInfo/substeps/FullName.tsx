@@ -10,7 +10,9 @@ import useLocalize from '@hooks/useLocalize';
 import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
+import useReimbursementAccountStepFormSubmit from '@pages/ReimbursementAccount/hooks/useReimbursementAccountStepFormSubmit';
 import HelpLinks from '@pages/ReimbursementAccount/PersonalInfo/HelpLinks';
+import * as FormActions from '@userActions/FormActions';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {ReimbursementAccount} from '@src/types/onyx';
@@ -25,8 +27,8 @@ type FullNameOnyxProps = {
 type FullNameProps = FullNameOnyxProps & SubStepProps;
 
 const personalInfoStepKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
-
-const REQUIRED_FIELDS = [personalInfoStepKey.FIRST_NAME, personalInfoStepKey.LAST_NAME];
+const STEP_FIELDS = [personalInfoStepKey.FIRST_NAME, personalInfoStepKey.LAST_NAME];
+const REQUIRED_FIELDS = STEP_FIELDS;
 
 const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, REQUIRED_FIELDS);
 
@@ -39,16 +41,23 @@ function FullName({reimbursementAccount, onNext, isEditing}: FullNameProps) {
         lastName: reimbursementAccount?.achData?.[personalInfoStepKey.LAST_NAME] ?? '',
     };
 
+    const handleSubmit = useReimbursementAccountStepFormSubmit({
+        formId: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
+        fieldIds: STEP_FIELDS,
+        onNext,
+        isEditing,
+    });
+
     return (
         // @ts-expect-error TODO: Remove this once FormProvider (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
         <FormProvider
             formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
             submitButtonText={translate(isEditing ? 'common.confirm' : 'common.next')}
             validate={validate}
-            onSubmit={onNext}
+            onSubmit={handleSubmit}
             style={[styles.mh5, styles.flexGrow1]}
             submitButtonStyles={[styles.pb5, styles.mb0]}
-            shouldSaveDraft
+            shouldSaveDraft={!isEditing}
         >
             <View>
                 <Text style={[styles.textHeadline, styles.mb3]}>{translate('personalInfoStep.enterYourLegalFirstAndLast')}</Text>
@@ -61,7 +70,6 @@ function FullName({reimbursementAccount, onNext, isEditing}: FullNameProps) {
                         aria-label={translate('personalInfoStep.legalFirstName')}
                         role={CONST.ROLE.PRESENTATION}
                         defaultValue={defaultValues.firstName}
-                        shouldSaveDraft
                     />
                 </View>
                 <View style={[styles.flex2, styles.mb3]}>
@@ -73,7 +81,6 @@ function FullName({reimbursementAccount, onNext, isEditing}: FullNameProps) {
                         aria-label={translate('personalInfoStep.legalLastName')}
                         role={CONST.ROLE.PRESENTATION}
                         defaultValue={defaultValues.lastName}
-                        shouldSaveDraft
                     />
                 </View>
                 <HelpLinks />

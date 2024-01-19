@@ -10,6 +10,7 @@ import useLocalize from '@hooks/useLocalize';
 import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
+import useReimbursementAccountStepFormSubmit from '@pages/ReimbursementAccount/hooks/useReimbursementAccountStepFormSubmit';
 import HelpLinks from '@pages/ReimbursementAccount/PersonalInfo/HelpLinks';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -25,9 +26,11 @@ type SocialSecurityNumberOnyxProps = {
 type SocialSecurityNumberProps = SocialSecurityNumberOnyxProps & SubStepProps;
 
 const personalInfoStepKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
+const STEP_FIELDS = [personalInfoStepKey.SSN_LAST_4];
+const REQUIRED_FIELDS = STEP_FIELDS;
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
-    const errors = ValidationUtils.getFieldRequiredErrors(values, [personalInfoStepKey.SSN_LAST_4]);
+    const errors = ValidationUtils.getFieldRequiredErrors(values, REQUIRED_FIELDS);
 
     if (values.ssnLast4 && !ValidationUtils.isValidSSNLastFour(values.ssnLast4)) {
         errors.ssnLast4 = 'bankAccount.error.ssnLast4';
@@ -41,16 +44,23 @@ function SocialSecurityNumber({reimbursementAccount, onNext, isEditing}: SocialS
 
     const defaultSsnLast4 = reimbursementAccount?.achData?.[personalInfoStepKey.SSN_LAST_4] ?? '';
 
+    const handleSubmit = useReimbursementAccountStepFormSubmit({
+        formId: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
+        fieldIds: STEP_FIELDS,
+        onNext,
+        isEditing,
+    });
+
     return (
         // @ts-expect-error TODO: Remove this once FormProvider (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
         <FormProvider
             formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
             submitButtonText={translate(isEditing ? 'common.confirm' : 'common.next')}
             validate={validate}
-            onSubmit={onNext}
+            onSubmit={handleSubmit}
             style={[styles.mh5, styles.flexGrow1]}
             submitButtonStyles={[styles.pb5, styles.mb0]}
-            shouldSaveDraft
+            shouldSaveDraft={!isEditing}
         >
             <View>
                 <Text style={[styles.textHeadline]}>{translate('personalInfoStep.enterTheLast4')}</Text>
@@ -67,7 +77,6 @@ function SocialSecurityNumber({reimbursementAccount, onNext, isEditing}: SocialS
                         inputMode={CONST.INPUT_MODE.NUMERIC}
                         defaultValue={defaultSsnLast4}
                         maxLength={CONST.BANK_ACCOUNT.MAX_LENGTH.SSN}
-                        shouldSaveDraft
                     />
                 </View>
                 <HelpLinks containerStyles={[styles.mt5]} />

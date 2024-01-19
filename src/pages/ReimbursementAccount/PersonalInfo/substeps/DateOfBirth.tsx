@@ -10,6 +10,7 @@ import useLocalize from '@hooks/useLocalize';
 import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
+import useReimbursementAccountStepFormSubmit from '@pages/ReimbursementAccount/hooks/useReimbursementAccountStepFormSubmit';
 import HelpLinks from '@pages/ReimbursementAccount/PersonalInfo/HelpLinks';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
@@ -28,9 +29,11 @@ type DateOfBirthOnyxProps = {
 type DateOfBirthProps = DateOfBirthOnyxProps & SubStepProps;
 
 const personalInfoDobKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY.DOB;
+const STEP_FIELDS = [personalInfoDobKey];
+const REQUIRED_FIELDS = STEP_FIELDS;
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
-    const errors = ValidationUtils.getFieldRequiredErrors(values, [personalInfoDobKey]);
+    const errors = ValidationUtils.getFieldRequiredErrors(values, REQUIRED_FIELDS);
 
     if (values.dob) {
         if (!ValidationUtils.isValidPastDate(values.dob) || !ValidationUtils.meetsMaximumAgeRequirement(values.dob)) {
@@ -52,15 +55,23 @@ function DateOfBirth({reimbursementAccount, reimbursementAccountDraft, onNext, i
     const minDate = subYears(new Date(), CONST.DATE_BIRTH.MAX_AGE);
     const maxDate = subYears(new Date(), CONST.DATE_BIRTH.MIN_AGE_FOR_PAYMENT);
 
+    const handleSubmit = useReimbursementAccountStepFormSubmit({
+        formId: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
+        fieldIds: STEP_FIELDS,
+        onNext,
+        isEditing,
+    });
+
     return (
         // @ts-expect-error TODO: Remove this once FormProvider (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
         <FormProvider
             formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
             submitButtonText={translate(isEditing ? 'common.confirm' : 'common.next')}
             validate={validate}
-            onSubmit={onNext}
+            onSubmit={handleSubmit}
             style={[styles.mh5, styles.flexGrow2, styles.justifyContentBetween]}
             submitButtonStyles={[styles.pb5, styles.mb0]}
+            shouldSaveDraft={!isEditing}
         >
             <Text style={[styles.textHeadline, styles.mb3]}>{translate('personalInfoStep.enterYourDateOfBirth')}</Text>
             <InputWrapper
@@ -74,7 +85,6 @@ function DateOfBirth({reimbursementAccount, reimbursementAccountDraft, onNext, i
                 defaultValue={dobDefaultValue}
                 minDate={minDate}
                 maxDate={maxDate}
-                shouldSaveDraft
             />
             <HelpLinks containerStyles={[styles.mt5]} />
         </FormProvider>

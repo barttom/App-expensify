@@ -9,6 +9,7 @@ import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
 import AddressForm from '@pages/ReimbursementAccount/AddressForm';
+import useReimbursementAccountStepFormSubmit from '@pages/ReimbursementAccount/hooks/useReimbursementAccountStepFormSubmit';
 import HelpLinks from '@pages/ReimbursementAccount/PersonalInfo/HelpLinks';
 import * as BankAccounts from '@userActions/BankAccounts';
 import CONST from '@src/CONST';
@@ -33,7 +34,8 @@ const INPUT_KEYS = {
     zipCode: personalInfoStepKey.ZIP_CODE,
 };
 
-const REQUIRED_FIELDS = [personalInfoStepKey.STREET, personalInfoStepKey.CITY, personalInfoStepKey.STATE, personalInfoStepKey.ZIP_CODE];
+const STEP_FIELDS = [personalInfoStepKey.STREET, personalInfoStepKey.CITY, personalInfoStepKey.STATE, personalInfoStepKey.ZIP_CODE];
+const REQUIRED_FIELDS = STEP_FIELDS;
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, REQUIRED_FIELDS);
@@ -60,10 +62,14 @@ function Address({reimbursementAccount, onNext, isEditing}: AddressProps) {
         zipCode: reimbursementAccount?.achData?.[personalInfoStepKey.ZIP_CODE] ?? '',
     };
 
-    const handleSubmit = (values: BankAccounts.PersonalAddress) => {
-        BankAccounts.addPersonalAddressForDraft(values);
-        onNext();
-    };
+    const handleSubmit = useReimbursementAccountStepFormSubmit({
+        formId: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
+        fieldIds: STEP_FIELDS,
+        onNext,
+        isEditing,
+    });
+
+    console.log('isEditing', isEditing);
 
     return (
         // @ts-expect-error TODO: Remove this once FormProvider (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
@@ -74,13 +80,13 @@ function Address({reimbursementAccount, onNext, isEditing}: AddressProps) {
             onSubmit={handleSubmit}
             submitButtonStyles={[styles.mb0, styles.pb5]}
             style={[styles.mh5, styles.flexGrow1]}
+            shouldSaveDraft={!isEditing}
         >
             <View>
                 <Text style={[styles.textHeadline]}>{translate('personalInfoStep.enterYourAddress')}</Text>
                 <Text>{translate('common.noPO')}</Text>
                 <AddressForm
                     inputKeys={INPUT_KEYS}
-                    shouldSaveDraft
                     translate={translate}
                     streetTranslationKey="common.streetAddress"
                     defaultValues={defaultValues}
