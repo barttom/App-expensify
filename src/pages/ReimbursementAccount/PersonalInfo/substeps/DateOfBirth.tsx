@@ -30,10 +30,9 @@ type DateOfBirthProps = DateOfBirthOnyxProps & SubStepProps;
 
 const personalInfoDobKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY.DOB;
 const STEP_FIELDS = [personalInfoDobKey];
-const REQUIRED_FIELDS = STEP_FIELDS;
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
-    const errors = ValidationUtils.getFieldRequiredErrors(values, REQUIRED_FIELDS);
+    const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
     if (values.dob) {
         if (!ValidationUtils.isValidPastDate(values.dob) || !ValidationUtils.meetsMaximumAgeRequirement(values.dob)) {

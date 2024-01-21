@@ -27,10 +27,9 @@ type SocialSecurityNumberProps = SocialSecurityNumberOnyxProps & SubStepProps;
 
 const personalInfoStepKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
 const STEP_FIELDS = [personalInfoStepKey.SSN_LAST_4];
-const REQUIRED_FIELDS = STEP_FIELDS;
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
-    const errors = ValidationUtils.getFieldRequiredErrors(values, REQUIRED_FIELDS);
+    const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
     if (values.ssnLast4 && !ValidationUtils.isValidSSNLastFour(values.ssnLast4)) {
         errors.ssnLast4 = 'bankAccount.error.ssnLast4';

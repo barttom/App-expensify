@@ -28,9 +28,8 @@ type FullNameProps = FullNameOnyxProps & SubStepProps;
 
 const personalInfoStepKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
 const STEP_FIELDS = [personalInfoStepKey.FIRST_NAME, personalInfoStepKey.LAST_NAME];
-const REQUIRED_FIELDS = STEP_FIELDS;
 
-const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, REQUIRED_FIELDS);
+const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
 function FullName({reimbursementAccount, onNext, isEditing}: FullNameProps) {
     const {translate} = useLocalize();

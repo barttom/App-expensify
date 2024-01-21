@@ -35,10 +35,9 @@ const INPUT_KEYS = {
 };
 
 const STEP_FIELDS = [personalInfoStepKey.STREET, personalInfoStepKey.CITY, personalInfoStepKey.STATE, personalInfoStepKey.ZIP_CODE];
-const REQUIRED_FIELDS = STEP_FIELDS;
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
-    const errors = ValidationUtils.getFieldRequiredErrors(values, REQUIRED_FIELDS);
+    const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
     if (values.requestorAddressStreet && !ValidationUtils.isValidAddress(values.requestorAddressStreet)) {
         errors.requestorAddressStreet = 'bankAccount.error.addressStreet';
