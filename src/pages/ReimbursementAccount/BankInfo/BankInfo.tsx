@@ -36,7 +36,7 @@ type BankInfoProps = BankInfoOnyxProps & {
     onBackButtonPress: () => void;
 };
 
-const bankInfoStepKeys = CONST.BANK_ACCOUNT.BANK_INFO_STEP.INPUT_KEY;
+const BANK_INFO_STEP_KEYS = CONST.BANK_ACCOUNT.BANK_INFO_STEP.INPUT_KEY;
 const manualSubsteps: Array<React.ComponentType<SubStepProps>> = [Manual, Confirmation];
 const plaidSubsteps: Array<React.ComponentType<SubStepProps>> = [Plaid, Confirmation];
 const receivedRedirectURI = getPlaidOAuthReceivedRedirectURI();
@@ -46,7 +46,7 @@ function BankInfo({reimbursementAccount, reimbursementAccountDraft, plaidLinkTok
     const styles = useThemeStyles();
 
     const [redirectedFromPlaidToManual, setRedirectedFromPlaidToManual] = React.useState(false);
-    const values = useMemo(() => getSubstepValues(bankInfoStepKeys, reimbursementAccountDraft ?? {}, reimbursementAccount ?? {}), [reimbursementAccount, reimbursementAccountDraft]);
+    const values = useMemo(() => getSubstepValues(BANK_INFO_STEP_KEYS, reimbursementAccountDraft ?? {}, reimbursementAccount ?? {}), [reimbursementAccount, reimbursementAccountDraft]);
 
     let setupType = reimbursementAccount?.achData?.subStep ?? '';
 
@@ -61,20 +61,20 @@ function BankInfo({reimbursementAccount, reimbursementAccountDraft, plaidLinkTok
         if (setupType === CONST.BANK_ACCOUNT.SETUP_TYPE.MANUAL) {
             BankAccounts.connectBankAccountManually(
                 bankAccountID,
-                values[bankInfoStepKeys.ACCOUNT_NUMBER],
-                values[bankInfoStepKeys.ROUTING_NUMBER],
-                values[bankInfoStepKeys.PLAID_MASK],
+                values[BANK_INFO_STEP_KEYS.ACCOUNT_NUMBER],
+                values[BANK_INFO_STEP_KEYS.ROUTING_NUMBER],
+                values[BANK_INFO_STEP_KEYS.PLAID_MASK],
                 policyID,
             );
         } else if (setupType === CONST.BANK_ACCOUNT.SETUP_TYPE.PLAID) {
             BankAccounts.connectBankAccountWithPlaid(
                 bankAccountID,
                 {
-                    [bankInfoStepKeys.ROUTING_NUMBER]: values[bankInfoStepKeys.ROUTING_NUMBER] ?? '',
-                    [bankInfoStepKeys.ACCOUNT_NUMBER]: values[bankInfoStepKeys.ACCOUNT_NUMBER] ?? '',
-                    [bankInfoStepKeys.BANK_NAME]: values[bankInfoStepKeys.BANK_NAME] ?? '',
-                    [bankInfoStepKeys.PLAID_ACCOUNT_ID]: values[bankInfoStepKeys.PLAID_ACCOUNT_ID] ?? '',
-                    [bankInfoStepKeys.PLAID_ACCESS_TOKEN]: values[bankInfoStepKeys.PLAID_ACCESS_TOKEN] ?? '',
+                    [bankInfoStepKeys.ROUTING_NUMBER]: values[BANK_INFO_STEP_KEYS.ROUTING_NUMBER] ?? '',
+                    [bankInfoStepKeys.ACCOUNT_NUMBER]: values[BANK_INFO_STEP_KEYS.ACCOUNT_NUMBER] ?? '',
+                    [bankInfoStepKeys.BANK_NAME]: values[BANK_INFO_STEP_KEYS.BANK_NAME] ?? '',
+                    [bankInfoStepKeys.PLAID_ACCOUNT_ID]: values[BANK_INFO_STEP_KEYS.PLAID_ACCOUNT_ID] ?? '',
+                    [bankInfoStepKeys.PLAID_ACCESS_TOKEN]: values[BANK_INFO_STEP_KEYS.PLAID_ACCESS_TOKEN] ?? '',
                 },
                 policyID,
             );

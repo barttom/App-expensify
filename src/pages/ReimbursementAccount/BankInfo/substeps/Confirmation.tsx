@@ -26,7 +26,7 @@ type ConfirmationOnyxProps = {
 
 type ConfirmationProps = ConfirmationOnyxProps & SubStepProps;
 
-const bankInfoStepKeys = CONST.BANK_ACCOUNT.BANK_INFO_STEP.INPUT_KEY;
+const BANK_INFO_STEP_KEYS = CONST.BANK_ACCOUNT.BANK_INFO_STEP.INPUT_KEY;
 
 function Confirmation({reimbursementAccount, reimbursementAccountDraft, onNext, onMove}: ConfirmationProps) {
     const {translate} = useLocalize();
@@ -35,7 +35,7 @@ function Confirmation({reimbursementAccount, reimbursementAccountDraft, onNext, 
     const isLoading = reimbursementAccount?.isLoading ?? false;
     const setupType = reimbursementAccount?.achData?.subStep ?? '';
     const bankAccountID = Number(reimbursementAccount?.achData?.bankAccountID ?? '0');
-    const values = useMemo(() => getSubstepValues(bankInfoStepKeys, reimbursementAccountDraft ?? {}, reimbursementAccount ?? {}), [reimbursementAccount, reimbursementAccountDraft]);
+    const values = useMemo(() => getSubstepValues(BANK_INFO_STEP_KEYS, reimbursementAccountDraft ?? {}, reimbursementAccount ?? {}), [reimbursementAccount, reimbursementAccountDraft]);
     const error = ErrorUtils.getLatestErrorMessage(reimbursementAccount ?? {});
 
     const handleModifyAccountNumbers = () => {
@@ -56,14 +56,14 @@ function Confirmation({reimbursementAccount, reimbursementAccountDraft, onNext, 
                     <View style={[styles.mb5]}>
                         <MenuItemWithTopDescription
                             description={translate('bankAccount.routingNumber')}
-                            title={values[bankInfoStepKeys.ROUTING_NUMBER]}
+                            title={values[BANK_INFO_STEP_KEYS.ROUTING_NUMBER]}
                             shouldShowRightIcon={!bankAccountID}
                             onPress={handleModifyAccountNumbers}
                         />
 
                         <MenuItemWithTopDescription
                             description={translate('bankAccount.accountNumber')}
-                            title={values[bankInfoStepKeys.ACCOUNT_NUMBER]}
+                            title={values[BANK_INFO_STEP_KEYS.ACCOUNT_NUMBER]}
                             shouldShowRightIcon={!bankAccountID}
                             onPress={handleModifyAccountNumbers}
                         />
@@ -71,7 +71,7 @@ function Confirmation({reimbursementAccount, reimbursementAccountDraft, onNext, 
                 )}
                 {setupType === CONST.BANK_ACCOUNT.SUBSTEP.PLAID && (
                     <MenuItemWithTopDescription
-                        description={values[bankInfoStepKeys.BANK_NAME]}
+                        description={values[BANK_INFO_STEP_KEYS.BANK_NAME]}
                         title={`${translate('bankAccount.accountEnding')} ${(values[bankInfoStepKeys.ACCOUNT_NUMBER] ?? '').slice(-4)}`}
                         shouldShowRightIcon={!bankAccountID}
                         onPress={handleModifyAccountNumbers}
