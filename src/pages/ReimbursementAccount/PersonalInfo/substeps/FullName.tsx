@@ -41,7 +41,6 @@ function FullName({reimbursementAccount, onNext, isEditing}: FullNameProps) {
     };
 
     const handleSubmit = useReimbursementAccountStepFormSubmit({
-        formId: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
         fieldIds: STEP_FIELDS,
         onNext,
         isEditing,

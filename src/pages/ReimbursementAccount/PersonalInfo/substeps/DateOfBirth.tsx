@@ -55,7 +55,6 @@ function DateOfBirth({reimbursementAccount, reimbursementAccountDraft, onNext, i
     const maxDate = subYears(new Date(), CONST.DATE_BIRTH.MIN_AGE_FOR_PAYMENT);
 
     const handleSubmit = useReimbursementAccountStepFormSubmit({
-        formId: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
         fieldIds: STEP_FIELDS,
         onNext,
         isEditing,

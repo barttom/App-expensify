@@ -62,7 +62,6 @@ function Address({reimbursementAccount, onNext, isEditing}: AddressProps) {
     };
 
     const handleSubmit = useReimbursementAccountStepFormSubmit({
-        formId: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
         fieldIds: STEP_FIELDS,
         onNext,
         isEditing,

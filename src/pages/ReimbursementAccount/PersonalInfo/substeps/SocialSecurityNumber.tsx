@@ -44,7 +44,6 @@ function SocialSecurityNumber({reimbursementAccount, onNext, isEditing}: SocialS
     const defaultSsnLast4 = reimbursementAccount?.achData?.[personalInfoStepKey.SSN_LAST_4] ?? '';
 
     const handleSubmit = useReimbursementAccountStepFormSubmit({
-        formId: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
         fieldIds: STEP_FIELDS,
         onNext,
         isEditing,
