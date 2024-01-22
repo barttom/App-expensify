@@ -11,7 +11,6 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
 import AddressForm from '@pages/ReimbursementAccount/AddressForm';
 import HelpLinks from '@pages/ReimbursementAccount/PersonalInfo/HelpLinks';
-import * as BankAccounts from '@userActions/BankAccounts';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {ReimbursementAccount} from '@src/types/onyx';
@@ -66,8 +65,6 @@ function Address({reimbursementAccount, onNext, isEditing}: AddressProps) {
         onNext,
         isEditing,
     });
-
-    console.log('isEditing', isEditing);
 
     return (
         // @ts-expect-error TODO: Remove this once FormProvider (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
