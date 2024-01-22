@@ -25,8 +25,8 @@ type SocialSecurityNumberOnyxProps = {
 
 type SocialSecurityNumberProps = SocialSecurityNumberOnyxProps & SubStepProps;
 
-const personalInfoStepKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
-const STEP_FIELDS = [personalInfoStepKey.SSN_LAST_4];
+const PERSONAL_INFO_STEP_KEY = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
+const STEP_FIELDS = [PERSONAL_INFO_STEP_KEY.SSN_LAST_4];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
@@ -41,7 +41,7 @@ function SocialSecurityNumber({reimbursementAccount, onNext, isEditing}: SocialS
     const {translate} = useLocalize();
     const styles = useThemeStyles();
 
-    const defaultSsnLast4 = reimbursementAccount?.achData?.[personalInfoStepKey.SSN_LAST_4] ?? '';
+    const defaultSsnLast4 = reimbursementAccount?.achData?.[PERSONAL_INFO_STEP_KEY.SSN_LAST_4] ?? '';
 
     const handleSubmit = useReimbursementAccountStepFormSubmit({
         fieldIds: STEP_FIELDS,
@@ -67,7 +67,7 @@ function SocialSecurityNumber({reimbursementAccount, onNext, isEditing}: SocialS
                     <InputWrapper
                         // @ts-expect-error TODO: Remove this once InputWrapper (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
                         InputComponent={TextInput}
-                        inputID={personalInfoStepKey.SSN_LAST_4}
+                        inputID={PERSONAL_INFO_STEP_KEY.SSN_LAST_4}
                         label={translate('personalInfoStep.last4SSN')}
                         aria-label={translate('personalInfoStep.last4SSN')}
                         role={CONST.ROLE.PRESENTATION}

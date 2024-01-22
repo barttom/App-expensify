@@ -24,16 +24,16 @@ type AddressOnyxProps = {
 
 type AddressProps = AddressOnyxProps & SubStepProps;
 
-const personalInfoStepKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
+const PERSONAL_INFO_STEP_KEY = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
 
 const INPUT_KEYS = {
-    street: personalInfoStepKey.STREET,
-    city: personalInfoStepKey.CITY,
-    state: personalInfoStepKey.STATE,
-    zipCode: personalInfoStepKey.ZIP_CODE,
+    street: PERSONAL_INFO_STEP_KEY.STREET,
+    city: PERSONAL_INFO_STEP_KEY.CITY,
+    state: PERSONAL_INFO_STEP_KEY.STATE,
+    zipCode: PERSONAL_INFO_STEP_KEY.ZIP_CODE,
 };
 
-const STEP_FIELDS = [personalInfoStepKey.STREET, personalInfoStepKey.CITY, personalInfoStepKey.STATE, personalInfoStepKey.ZIP_CODE];
+const STEP_FIELDS = [PERSONAL_INFO_STEP_KEY.STREET, PERSONAL_INFO_STEP_KEY.CITY, PERSONAL_INFO_STEP_KEY.STATE, PERSONAL_INFO_STEP_KEY.ZIP_CODE];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
@@ -54,10 +54,10 @@ function Address({reimbursementAccount, onNext, isEditing}: AddressProps) {
     const styles = useThemeStyles();
 
     const defaultValues = {
-        street: reimbursementAccount?.achData?.[personalInfoStepKey.STREET] ?? '',
-        city: reimbursementAccount?.achData?.[personalInfoStepKey.CITY] ?? '',
-        state: reimbursementAccount?.achData?.[personalInfoStepKey.STATE] ?? '',
-        zipCode: reimbursementAccount?.achData?.[personalInfoStepKey.ZIP_CODE] ?? '',
+        street: reimbursementAccount?.achData?.[PERSONAL_INFO_STEP_KEY.STREET] ?? '',
+        city: reimbursementAccount?.achData?.[PERSONAL_INFO_STEP_KEY.CITY] ?? '',
+        state: reimbursementAccount?.achData?.[PERSONAL_INFO_STEP_KEY.STATE] ?? '',
+        zipCode: reimbursementAccount?.achData?.[PERSONAL_INFO_STEP_KEY.ZIP_CODE] ?? '',
     };
 
     const handleSubmit = useReimbursementAccountStepFormSubmit({

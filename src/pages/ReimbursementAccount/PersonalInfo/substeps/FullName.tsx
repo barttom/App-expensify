@@ -25,8 +25,8 @@ type FullNameOnyxProps = {
 
 type FullNameProps = FullNameOnyxProps & SubStepProps;
 
-const personalInfoStepKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
-const STEP_FIELDS = [personalInfoStepKey.FIRST_NAME, personalInfoStepKey.LAST_NAME];
+const PERSONAL_INFO_STEP_KEY = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY;
+const STEP_FIELDS = [PERSONAL_INFO_STEP_KEY.FIRST_NAME, PERSONAL_INFO_STEP_KEY.LAST_NAME];
 
 const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
@@ -35,8 +35,8 @@ function FullName({reimbursementAccount, onNext, isEditing}: FullNameProps) {
     const styles = useThemeStyles();
 
     const defaultValues = {
-        firstName: reimbursementAccount?.achData?.[personalInfoStepKey.FIRST_NAME] ?? '',
-        lastName: reimbursementAccount?.achData?.[personalInfoStepKey.LAST_NAME] ?? '',
+        firstName: reimbursementAccount?.achData?.[PERSONAL_INFO_STEP_KEY.FIRST_NAME] ?? '',
+        lastName: reimbursementAccount?.achData?.[PERSONAL_INFO_STEP_KEY.LAST_NAME] ?? '',
     };
 
     const handleSubmit = useReimbursementAccountStepFormSubmit({
@@ -62,7 +62,7 @@ function FullName({reimbursementAccount, onNext, isEditing}: FullNameProps) {
                     <InputWrapper
                         // @ts-expect-error TODO: Remove this once InputWrapper (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
                         InputComponent={TextInput}
-                        inputID={personalInfoStepKey.FIRST_NAME}
+                        inputID={PERSONAL_INFO_STEP_KEY.FIRST_NAME}
                         label={translate('personalInfoStep.legalFirstName')}
                         aria-label={translate('personalInfoStep.legalFirstName')}
                         role={CONST.ROLE.PRESENTATION}
@@ -73,7 +73,7 @@ function FullName({reimbursementAccount, onNext, isEditing}: FullNameProps) {
                     <InputWrapper
                         // @ts-expect-error TODO: Remove this once InputWrapper (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
                         InputComponent={TextInput}
-                        inputID={personalInfoStepKey.LAST_NAME}
+                        inputID={PERSONAL_INFO_STEP_KEY.LAST_NAME}
                         label={translate('personalInfoStep.legalLastName')}
                         aria-label={translate('personalInfoStep.legalLastName')}
                         role={CONST.ROLE.PRESENTATION}

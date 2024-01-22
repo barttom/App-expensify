@@ -23,8 +23,8 @@ type TaxIdBusinessOnyxProps = {
 
 type TaxIdBusinessProps = TaxIdBusinessOnyxProps & SubStepProps;
 
-const companyTaxIdKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_TAX_ID;
-const STEP_FIELDS = [companyTaxIdKey];
+const COMPANY_TAX_ID_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_TAX_ID;
+const STEP_FIELDS = [COMPANY_TAX_ID_KEY];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
@@ -63,7 +63,7 @@ function TaxIdBusiness({reimbursementAccount, onNext, isEditing}: TaxIdBusinessP
             <InputWrapper
                 // @ts-expect-error TODO: Remove this once InputWrapper (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript
                 InputComponent={TextInput}
-                inputID={companyTaxIdKey}
+                inputID={COMPANY_TAX_ID_KEY}
                 label={translate('businessInfoStep.taxIDNumber')}
                 aria-label={translate('businessInfoStep.taxIDNumber')}
                 role={CONST.ROLE.PRESENTATION}

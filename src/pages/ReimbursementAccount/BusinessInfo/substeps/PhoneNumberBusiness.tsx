@@ -23,8 +23,8 @@ type PhoneNumberBusinessOnyxProps = {
 
 type PhoneNumberBusinessProps = PhoneNumberBusinessOnyxProps & SubStepProps;
 
-const companyPhoneNumberKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_PHONE;
-const STEP_FIELDS = [companyPhoneNumberKey];
+const COMPANY_PHONE_NUMBER_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_PHONE;
+const STEP_FIELDS = [COMPANY_PHONE_NUMBER_KEY];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
@@ -61,7 +61,7 @@ function PhoneNumberBusiness({reimbursementAccount, onNext, isEditing}: PhoneNum
             <InputWrapper
                 // @ts-expect-error TODO: Remove this once InputWrapper (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript
                 InputComponent={TextInput}
-                inputID={companyPhoneNumberKey}
+                inputID={COMPANY_PHONE_NUMBER_KEY}
                 label={translate('common.phoneNumber')}
                 aria-label={translate('common.phoneNumber')}
                 role={CONST.ROLE.PRESENTATION}

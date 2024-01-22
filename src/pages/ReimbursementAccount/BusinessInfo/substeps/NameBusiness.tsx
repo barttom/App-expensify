@@ -23,8 +23,8 @@ type NameBusinessOnyxProps = {
 
 type NameBusinessProps = NameBusinessOnyxProps & SubStepProps;
 
-const companyNameKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_NAME;
-const STEP_FIELDS = [companyNameKey];
+const COMPANY_NAME_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_NAME;
+const STEP_FIELDS = [COMPANY_NAME_KEY];
 
 const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
@@ -60,7 +60,7 @@ function NameBusiness({reimbursementAccount, onNext, isEditing}: NameBusinessPro
                 label={translate('businessInfoStep.businessName')}
                 aria-label={translate('businessInfoStep.businessName')}
                 role={CONST.ROLE.PRESENTATION}
-                inputID={companyNameKey}
+                inputID={COMPANY_NAME_KEY}
                 containerStyles={[styles.mt4]}
                 disabled={shouldDisableCompanyName}
                 defaultValue={defaultCompanyName}

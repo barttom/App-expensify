@@ -26,8 +26,8 @@ type IncorporationDateBusinessOnyxProps = {
 
 type IncorporationDateBusinessProps = IncorporationDateBusinessOnyxProps & SubStepProps;
 
-const companyIncorporationDateKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.INCORPORATION_DATE;
-const STEP_FIELDS = [companyIncorporationDateKey];
+const COMPANY_INCORPORATION_DATE_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.INCORPORATION_DATE;
+const STEP_FIELDS = [COMPANY_INCORPORATION_DATE_KEY];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
@@ -68,7 +68,7 @@ function IncorporationDateBusiness({reimbursementAccount, reimbursementAccountDr
                 // @ts-expect-error TODO: Remove this once DatePicker (https://github.com/Expensify/App/issues/25140) is migrated to TypeScript
                 InputComponent={DatePicker}
                 formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
-                inputID={companyIncorporationDateKey}
+                inputID={COMPANY_INCORPORATION_DATE_KEY}
                 label={translate('businessInfoStep.incorporationDate')}
                 containerStyles={[styles.mt4]}
                 placeholder={translate('businessInfoStep.incorporationDatePlaceholder')}

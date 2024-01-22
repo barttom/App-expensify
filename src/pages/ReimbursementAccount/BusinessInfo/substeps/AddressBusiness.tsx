@@ -22,16 +22,16 @@ type AddressBusinessOnyxProps = {
 
 type AddressBusinessProps = AddressBusinessOnyxProps & SubStepProps;
 
-const companyBusinessInfoKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY;
+const COMPANY_BUSINESS_INFO_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY;
 
 const INPUT_KEYS = {
-    street: companyBusinessInfoKey.STREET,
-    city: companyBusinessInfoKey.CITY,
-    state: companyBusinessInfoKey.STATE,
-    zipCode: companyBusinessInfoKey.ZIP_CODE,
+    street: COMPANY_BUSINESS_INFO_KEY.STREET,
+    city: COMPANY_BUSINESS_INFO_KEY.CITY,
+    state: COMPANY_BUSINESS_INFO_KEY.STATE,
+    zipCode: COMPANY_BUSINESS_INFO_KEY.ZIP_CODE,
 };
 
-const STEP_FIELDS = [companyBusinessInfoKey.STREET, companyBusinessInfoKey.CITY, companyBusinessInfoKey.STATE, companyBusinessInfoKey.ZIP_CODE];
+const STEP_FIELDS = [COMPANY_BUSINESS_INFO_KEY.STREET, COMPANY_BUSINESS_INFO_KEY.CITY, COMPANY_BUSINESS_INFO_KEY.STATE, COMPANY_BUSINESS_INFO_KEY.ZIP_CODE];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);

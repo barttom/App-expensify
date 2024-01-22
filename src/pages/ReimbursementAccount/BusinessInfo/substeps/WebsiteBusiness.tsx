@@ -31,8 +31,8 @@ type WebsiteBusinessOnyxProps = {
 
 type WebsiteBusinessProps = WebsiteBusinessOnyxProps & SubStepProps;
 
-const companyWebsiteKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_WEBSITE;
-const STEP_FIELDS = [companyWebsiteKey];
+const COMPANY_WEBSITE_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_WEBSITE;
+const STEP_FIELDS = [COMPANY_WEBSITE_KEY];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
@@ -79,7 +79,7 @@ function WebsiteBusiness({reimbursementAccount, user, session, onNext, isEditing
             <InputWrapper
                 // @ts-expect-error TODO: Remove this once InputWrapper (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript
                 InputComponent={TextInput}
-                inputID={companyWebsiteKey}
+                inputID={COMPANY_WEBSITE_KEY}
                 label={translate('businessInfoStep.companyWebsite')}
                 aria-label={translate('businessInfoStep.companyWebsite')}
                 role={CONST.ROLE.PRESENTATION}

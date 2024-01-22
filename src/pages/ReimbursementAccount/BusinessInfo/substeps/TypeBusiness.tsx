@@ -25,8 +25,8 @@ type TypeBusinessProps = TypeBusinessOnyxProps & SubStepProps;
 
 type IncorporationType = keyof typeof CONST.INCORPORATION_TYPES;
 
-const companyIncorporationTypeKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.INCORPORATION_TYPE;
-const STEP_FIELDS = [companyIncorporationTypeKey];
+const COMPANY_INCORPORATION_TYPE_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.INCORPORATION_TYPE;
+const STEP_FIELDS = [COMPANY_INCORPORATION_TYPE_KEY];
 
 const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
@@ -56,7 +56,7 @@ function TypeBusiness({reimbursementAccount, onNext, isEditing}: TypeBusinessPro
                 // @ts-expect-error TODO: Remove this once InputWrapper (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
                 InputComponent={Picker}
                 formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
-                inputID={companyIncorporationTypeKey}
+                inputID={COMPANY_INCORPORATION_TYPE_KEY}
                 label={translate('businessInfoStep.companyType')}
                 items={Object.keys(CONST.INCORPORATION_TYPES).map((key) => ({
                     value: key,

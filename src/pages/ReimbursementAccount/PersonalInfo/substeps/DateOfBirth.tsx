@@ -28,8 +28,8 @@ type DateOfBirthOnyxProps = {
 
 type DateOfBirthProps = DateOfBirthOnyxProps & SubStepProps;
 
-const personalInfoDobKey = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY.DOB;
-const STEP_FIELDS = [personalInfoDobKey];
+const PERSONAL_INFO_DOB_KEY = CONST.BANK_ACCOUNT.PERSONAL_INFO_STEP.INPUT_KEY.DOB;
+const STEP_FIELDS = [PERSONAL_INFO_DOB_KEY];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
@@ -49,7 +49,7 @@ function DateOfBirth({reimbursementAccount, reimbursementAccountDraft, onNext, i
     const {translate} = useLocalize();
     const styles = useThemeStyles();
 
-    const dobDefaultValue = reimbursementAccount?.achData?.[personalInfoDobKey] ?? reimbursementAccountDraft?.[personalInfoDobKey] ?? '';
+    const dobDefaultValue = reimbursementAccount?.achData?.[PERSONAL_INFO_DOB_KEY] ?? reimbursementAccountDraft?.[PERSONAL_INFO_DOB_KEY] ?? '';
 
     const minDate = subYears(new Date(), CONST.DATE_BIRTH.MAX_AGE);
     const maxDate = subYears(new Date(), CONST.DATE_BIRTH.MIN_AGE_FOR_PAYMENT);
@@ -76,7 +76,7 @@ function DateOfBirth({reimbursementAccount, reimbursementAccountDraft, onNext, i
                 // @ts-expect-error TODO: Remove this once InputWrapper (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript.
                 InputComponent={DatePicker}
                 formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
-                inputID={personalInfoDobKey}
+                inputID={PERSONAL_INFO_DOB_KEY}
                 label={translate('common.dob')}
                 containerStyles={[styles.mt6]}
                 placeholder={translate('common.dateFormat')}
