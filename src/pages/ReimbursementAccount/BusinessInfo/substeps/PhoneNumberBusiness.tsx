@@ -6,6 +6,7 @@ import InputWrapper from '@components/Form/InputWrapper';
 import Text from '@components/Text';
 import TextInput from '@components/TextInput';
 import useLocalize from '@hooks/useLocalize';
+import useReimbursementAccountStepFormSubmit from '@hooks/useReimbursementAccountStepFormSubmit';
 import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
@@ -23,9 +24,10 @@ type PhoneNumberBusinessOnyxProps = {
 type PhoneNumberBusinessProps = PhoneNumberBusinessOnyxProps & SubStepProps;
 
 const companyPhoneNumberKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_PHONE;
+const STEP_FIELDS = [companyPhoneNumberKey];
 
 const validate = (values: FormValues): OnyxCommon.Errors => {
-    const errors = ValidationUtils.getFieldRequiredErrors(values, [companyPhoneNumberKey]);
+    const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
     if (values.companyPhone && !ValidationUtils.isValidUSPhone(values.companyPhone, true)) {
         errors.companyPhone = 'bankAccount.error.phoneNumber';
@@ -39,13 +41,19 @@ function PhoneNumberBusiness({reimbursementAccount, onNext, isEditing}: PhoneNum
     const styles = useThemeStyles();
     const defaultCompanyPhoneNumber = reimbursementAccount?.achData?.companyPhone ?? '';
 
+    const handleSubmit = useReimbursementAccountStepFormSubmit({
+        fieldIds: STEP_FIELDS,
+        isEditing,
+        onNext,
+    });
+
     return (
         // @ts-expect-error TODO: Remove this once FormProvider (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript
         <FormProvider
             formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
             submitButtonText={translate(isEditing ? 'common.confirm' : 'common.next')}
             validate={validate}
-            onSubmit={onNext}
+            onSubmit={handleSubmit}
             style={[styles.mh5, styles.flexGrow1]}
             submitButtonStyles={[styles.pb5, styles.mb0]}
         >
@@ -61,7 +69,7 @@ function PhoneNumberBusiness({reimbursementAccount, onNext, isEditing}: PhoneNum
                 inputMode={CONST.INPUT_MODE.TEL}
                 placeholder={translate('common.phoneNumberPlaceholder')}
                 defaultValue={defaultCompanyPhoneNumber}
-                shouldSaveDraft
+                shouldSaveDraft={!isEditing}
             />
         </FormProvider>
     );

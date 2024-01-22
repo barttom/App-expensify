@@ -138,10 +138,6 @@ function addBusinessWebsiteForDraft(website: string) {
     Onyx.merge(ONYXKEYS.REIMBURSEMENT_ACCOUNT_DRAFT, {website});
 }
 
-function addBusinessAddressForDraft(businessAddress: BusinessAddress) {
-    Onyx.merge(ONYXKEYS.REIMBURSEMENT_ACCOUNT_DRAFT, businessAddress);
-}
-
 /**
  * Submit Bank Account step with Plaid data so php can perform some checks.
  */
@@ -531,7 +527,6 @@ function setReimbursementAccountLoading(isLoading: boolean) {
 export {
     acceptACHContractForBankAccount,
     addBusinessWebsiteForDraft,
-    addBusinessAddressForDraft,
     addPersonalBankAccount,
     clearOnfidoToken,
     clearPersonalBankAccount,

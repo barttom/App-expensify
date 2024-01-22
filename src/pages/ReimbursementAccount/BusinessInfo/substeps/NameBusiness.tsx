@@ -6,6 +6,7 @@ import InputWrapper from '@components/Form/InputWrapper';
 import Text from '@components/Text';
 import TextInput from '@components/TextInput';
 import useLocalize from '@hooks/useLocalize';
+import useReimbursementAccountStepFormSubmit from '@hooks/useReimbursementAccountStepFormSubmit';
 import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
@@ -23,8 +24,9 @@ type NameBusinessOnyxProps = {
 type NameBusinessProps = NameBusinessOnyxProps & SubStepProps;
 
 const companyNameKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.COMPANY_NAME;
+const STEP_FIELDS = [companyNameKey];
 
-const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, [companyNameKey]);
+const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
 function NameBusiness({reimbursementAccount, onNext, isEditing}: NameBusinessProps) {
     const {translate} = useLocalize();
@@ -35,13 +37,19 @@ function NameBusiness({reimbursementAccount, onNext, isEditing}: NameBusinessPro
 
     const shouldDisableCompanyName = !!(bankAccountID && defaultCompanyName && reimbursementAccount?.achData?.state !== 'SETUP');
 
+    const handleSubmit = useReimbursementAccountStepFormSubmit({
+        fieldIds: STEP_FIELDS,
+        isEditing,
+        onNext,
+    });
+
     return (
         // @ts-expect-error TODO: Remove this once FormProvider (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript
         <FormProvider
             formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
             submitButtonText={translate(isEditing ? 'common.confirm' : 'common.next')}
             validate={validate}
-            onSubmit={onNext}
+            onSubmit={handleSubmit}
             style={[styles.mh5, styles.flexGrow1]}
             submitButtonStyles={[styles.pb5, styles.mb0]}
         >
@@ -56,7 +64,7 @@ function NameBusiness({reimbursementAccount, onNext, isEditing}: NameBusinessPro
                 containerStyles={[styles.mt4]}
                 disabled={shouldDisableCompanyName}
                 defaultValue={defaultCompanyName}
-                shouldSaveDraft
+                shouldSaveDraft={!isEditing}
                 shouldUseDefaultValue={shouldDisableCompanyName}
             />
         </FormProvider>

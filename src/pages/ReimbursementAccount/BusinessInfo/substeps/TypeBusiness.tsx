@@ -6,6 +6,7 @@ import InputWrapper from '@components/Form/InputWrapper';
 import Picker from '@components/Picker';
 import Text from '@components/Text';
 import useLocalize from '@hooks/useLocalize';
+import useReimbursementAccountStepFormSubmit from '@hooks/useReimbursementAccountStepFormSubmit';
 import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
@@ -25,13 +26,20 @@ type TypeBusinessProps = TypeBusinessOnyxProps & SubStepProps;
 type IncorporationType = keyof typeof CONST.INCORPORATION_TYPES;
 
 const companyIncorporationTypeKey = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.INCORPORATION_TYPE;
+const STEP_FIELDS = [companyIncorporationTypeKey];
 
-const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, [companyIncorporationTypeKey]);
+const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
 function TypeBusiness({reimbursementAccount, onNext, isEditing}: TypeBusinessProps) {
     const {translate} = useLocalize();
     const styles = useThemeStyles();
     const defaultIncorporationType = reimbursementAccount?.achData?.incorporationType ?? '';
+
+    const handleSubmit = useReimbursementAccountStepFormSubmit({
+        fieldIds: STEP_FIELDS,
+        isEditing,
+        onNext,
+    });
 
     return (
         // @ts-expect-error TODO: Remove this once FormProvider (https://github.com/Expensify/App/issues/31972) is migrated to TypeScript
@@ -39,7 +47,7 @@ function TypeBusiness({reimbursementAccount, onNext, isEditing}: TypeBusinessPro
             formID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
             submitButtonText={translate(isEditing ? 'common.confirm' : 'common.next')}
             validate={validate}
-            onSubmit={onNext}
+            onSubmit={handleSubmit}
             style={[styles.mh5, styles.flexGrow1]}
             submitButtonStyles={[styles.pb5, styles.mb0]}
         >
@@ -56,7 +64,7 @@ function TypeBusiness({reimbursementAccount, onNext, isEditing}: TypeBusinessPro
                 }))}
                 placeholder={{value: '', label: '-'}}
                 defaultValue={defaultIncorporationType}
-                shouldSaveDraft
+                shouldSaveDraft={!isEditing}
             />
         </FormProvider>
     );
