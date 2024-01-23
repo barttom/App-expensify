@@ -70,11 +70,11 @@ function BankInfo({reimbursementAccount, reimbursementAccountDraft, plaidLinkTok
             BankAccounts.connectBankAccountWithPlaid(
                 bankAccountID,
                 {
-                    [bankInfoStepKeys.ROUTING_NUMBER]: values[BANK_INFO_STEP_KEYS.ROUTING_NUMBER] ?? '',
-                    [bankInfoStepKeys.ACCOUNT_NUMBER]: values[BANK_INFO_STEP_KEYS.ACCOUNT_NUMBER] ?? '',
-                    [bankInfoStepKeys.BANK_NAME]: values[BANK_INFO_STEP_KEYS.BANK_NAME] ?? '',
-                    [bankInfoStepKeys.PLAID_ACCOUNT_ID]: values[BANK_INFO_STEP_KEYS.PLAID_ACCOUNT_ID] ?? '',
-                    [bankInfoStepKeys.PLAID_ACCESS_TOKEN]: values[BANK_INFO_STEP_KEYS.PLAID_ACCESS_TOKEN] ?? '',
+                    [BANK_INFO_STEP_KEYS.ROUTING_NUMBER]: values[BANK_INFO_STEP_KEYS.ROUTING_NUMBER] ?? '',
+                    [BANK_INFO_STEP_KEYS.ACCOUNT_NUMBER]: values[BANK_INFO_STEP_KEYS.ACCOUNT_NUMBER] ?? '',
+                    [BANK_INFO_STEP_KEYS.BANK_NAME]: values[BANK_INFO_STEP_KEYS.BANK_NAME] ?? '',
+                    [BANK_INFO_STEP_KEYS.PLAID_ACCOUNT_ID]: values[BANK_INFO_STEP_KEYS.PLAID_ACCOUNT_ID] ?? '',
+                    [BANK_INFO_STEP_KEYS.PLAID_ACCESS_TOKEN]: values[BANK_INFO_STEP_KEYS.PLAID_ACCESS_TOKEN] ?? '',
                 },
                 policyID,
             );
@@ -104,13 +104,13 @@ function BankInfo({reimbursementAccount, reimbursementAccountDraft, plaidLinkTok
                 onBackButtonPress();
             } else {
                 const bankAccountData = {
-                    [bankInfoStepKeys.ROUTING_NUMBER]: '',
-                    [bankInfoStepKeys.ACCOUNT_NUMBER]: '',
-                    [bankInfoStepKeys.PLAID_MASK]: '',
-                    [bankInfoStepKeys.IS_SAVINGS]: '',
-                    [bankInfoStepKeys.BANK_NAME]: '',
-                    [bankInfoStepKeys.PLAID_ACCOUNT_ID]: '',
-                    [bankInfoStepKeys.PLAID_ACCESS_TOKEN]: '',
+                    [BANK_INFO_STEP_KEYS.ROUTING_NUMBER]: '',
+                    [BANK_INFO_STEP_KEYS.ACCOUNT_NUMBER]: '',
+                    [BANK_INFO_STEP_KEYS.PLAID_MASK]: '',
+                    [BANK_INFO_STEP_KEYS.IS_SAVINGS]: '',
+                    [BANK_INFO_STEP_KEYS.BANK_NAME]: '',
+                    [BANK_INFO_STEP_KEYS.PLAID_ACCOUNT_ID]: '',
+                    [BANK_INFO_STEP_KEYS.PLAID_ACCESS_TOKEN]: '',
                 };
                 ReimbursementAccountUtils.updateReimbursementAccountDraft(bankAccountData);
                 BankAccounts.setBankAccountSubStep(null);

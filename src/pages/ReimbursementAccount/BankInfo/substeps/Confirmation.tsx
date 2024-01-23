@@ -72,7 +72,7 @@ function Confirmation({reimbursementAccount, reimbursementAccountDraft, onNext, 
                 {setupType === CONST.BANK_ACCOUNT.SUBSTEP.PLAID && (
                     <MenuItemWithTopDescription
                         description={values[BANK_INFO_STEP_KEYS.BANK_NAME]}
-                        title={`${translate('bankAccount.accountEnding')} ${(values[bankInfoStepKeys.ACCOUNT_NUMBER] ?? '').slice(-4)}`}
+                        title={`${translate('bankAccount.accountEnding')} ${(values[BANK_INFO_STEP_KEYS.ACCOUNT_NUMBER] ?? '').slice(-4)}`}
                         shouldShowRightIcon={!bankAccountID}
                         onPress={handleModifyAccountNumbers}
                     />
