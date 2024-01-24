@@ -4185,14 +4185,14 @@ const styles = (theme: ThemeColors) =>
             height: 40,
             borderWidth: 1,
             borderRadius: 20,
-            borderColor: colors.green400,
+            borderColor: theme.borderFocus,
             justifyContent: 'center',
             alignItems: 'center',
-            color: colors.white,
+            color: theme.white,
         },
 
         interactiveStepHeaderLockedStepButton: {
-            borderColor: colors.productDark400,
+            borderColor: theme.borderLighter,
         },
 
         interactiveStepHeaderStepText: {
@@ -4202,17 +4202,17 @@ const styles = (theme: ThemeColors) =>
         },
 
         interactiveStepHeaderCompletedStepButton: {
-            backgroundColor: colors.green400,
+            backgroundColor: theme.iconSuccessFill,
         },
 
         interactiveStepHeaderStepLine: {
             height: 1,
             flexGrow: 1,
-            backgroundColor: colors.green400,
+            backgroundColor: theme.iconSuccessFill,
         },
 
         interactiveStepHeaderLockedStepLine: {
-            backgroundColor: colors.productDark400,
+            backgroundColor: theme.activeComponentBG,
         },
         confirmBankInfoCard: {
             backgroundColor: colors.green800,

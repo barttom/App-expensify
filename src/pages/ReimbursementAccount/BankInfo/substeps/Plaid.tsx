@@ -40,17 +40,14 @@ function Plaid({reimbursementAccount, reimbursementAccountDraft, onNext, plaidDa
     const isFocused = useIsFocused();
     const selectedPlaidAccountID = reimbursementAccountDraft?.[BANK_INFO_STEP_KEYS.PLAID_ACCOUNT_ID] ?? '';
 
-    const validate = useCallback(
-        (values: ValuesType): Errors => {
-            const errorFields: Errors = {};
-            if (!values.selectedPlaidAccountID) {
-                errorFields.selectedPlaidAccountID = 'bankAccount.error.youNeedToSelectAnOption';
-            }
+    const validate = useCallback((values: ValuesType): Errors => {
+        const errorFields: Errors = {};
+        if (!values.selectedPlaidAccountID) {
+            errorFields.selectedPlaidAccountID = 'bankAccount.error.youNeedToSelectAnOption';
+        }
 
-            return errorFields;
-        },
-        [selectedPlaidAccountID],
-    );
+        return errorFields;
+    }, []);
 
     useEffect(() => {
         const plaidBankAccounts = plaidData?.bankAccounts ?? [];
