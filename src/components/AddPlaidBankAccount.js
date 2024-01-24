@@ -16,6 +16,7 @@ import * as BankAccounts from '@userActions/BankAccounts';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import FullPageOfflineBlockingView from './BlockingViews/FullPageOfflineBlockingView';
+import FormHelpMessage from './FormHelpMessage';
 import Icon from './Icon';
 import getBankIcon from './Icon/BankIcons';
 import Picker from './Picker';
@@ -59,6 +60,10 @@ const propTypes = {
 
     /** Is displayed in new VBBA */
     isDisplayedInNewVBBA: PropTypes.bool,
+
+    errorText: PropTypes.string,
+
+    onInputChange: PropTypes.func,
 };
 
 const defaultProps = {
@@ -73,6 +78,8 @@ const defaultProps = {
     bankAccountID: 0,
     isPlaidDisabled: false,
     isDisplayedInNewVBBA: false,
+    errorText: '',
+    onInputChange: () => {},
 };
 
 function AddPlaidBankAccount({
@@ -88,6 +95,8 @@ function AddPlaidBankAccount({
     allowDebit,
     isPlaidDisabled,
     isDisplayedInNewVBBA,
+    errorText,
+    onInputChange,
 }) {
     const theme = useTheme();
     const styles = useThemeStyles();
@@ -196,6 +205,7 @@ function AddPlaidBankAccount({
         const mask = _.find(plaidBankAccounts, (account) => account.plaidAccountID === plaidAccountID).mask;
         setSelectedPlaidAccountMask(mask);
         onSelect(plaidAccountID);
+        onInputChange(plaidAccountID);
     };
 
     if (isPlaidDisabled) {
@@ -288,6 +298,7 @@ function AddPlaidBankAccount({
                     defaultCheckedValue={defaultSelectedPlaidAccountID}
                     onPress={handleSelectingPlaidAccount}
                 />
+                <FormHelpMessage message={errorText} />
             </FullPageOfflineBlockingView>
         );
     }
