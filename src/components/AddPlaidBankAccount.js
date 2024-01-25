@@ -61,8 +61,10 @@ const propTypes = {
     /** Is displayed in new VBBA */
     isDisplayedInNewVBBA: PropTypes.bool,
 
+    /** Text to display on error message */
     errorText: PropTypes.string,
 
+    /** Function called whenever radio button value changes */
     onInputChange: PropTypes.func,
 };
 

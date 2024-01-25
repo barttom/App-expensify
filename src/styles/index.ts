@@ -677,11 +677,13 @@ const styles = (theme: ThemeColors) =>
         },
 
         loadingVBAAnimation: {
-            width: '100%',
+            width: 140,
+            height: 140,
         },
 
         loadingVBAAnimationWeb: {
-            width: '100%',
+            width: 140,
+            height: 140,
         },
 
         pickerSmall: (backgroundColor = theme.highlightBG) =>
