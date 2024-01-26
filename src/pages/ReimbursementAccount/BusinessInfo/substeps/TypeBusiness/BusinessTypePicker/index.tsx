@@ -6,11 +6,11 @@ import MenuItemWithTopDescription from '@components/MenuItemWithTopDescription';
 import useLocalize from '@hooks/useLocalize';
 import useThemeStyles from '@hooks/useThemeStyles';
 import BusinessTypeSelectorModal from './BusinessTypeSelectorModal';
-import type {IncorporationType} from './types';
+import type {BusinessTypeItemType, IncorporationType} from './types';
 
 type BusinessTypePickerProps = {
     /** Error text to display */
-    errorText: string;
+    errorText?: string;
 
     /** Business type to display */
     value: string;
@@ -45,9 +45,9 @@ function BusinessTypePicker({errorText = '', value, wrapperStyle, onInputChange,
         setIsPickerVisible(false);
     };
 
-    const updateBusinessTypeInput = (businessType: {value: string}) => {
-        if (businessType.value !== value) {
-            onInputChange(businessType.value);
+    const updateBusinessTypeInput = (businessTypeItem: BusinessTypeItemType) => {
+        if (businessTypeItem.value !== value) {
+            onInputChange(businessTypeItem.value);
         }
         // If the user selects any business type, call the hidePickerModal function with shouldBlur = false
         // to prevent the onBlur function from being called.
