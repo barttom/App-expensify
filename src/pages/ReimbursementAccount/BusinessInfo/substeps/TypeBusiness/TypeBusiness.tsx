@@ -11,7 +11,7 @@ import useThemeStyles from '@hooks/useThemeStyles';
 import * as ValidationUtils from '@libs/ValidationUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
-import type {ReimbursementAccount, ReimbursementAccountDraft} from '@src/types/onyx';
+import type {ReimbursementAccount} from '@src/types/onyx';
 import type {FormValues} from '@src/types/onyx/Form';
 import type * as OnyxCommon from '@src/types/onyx/OnyxCommon';
 import BusinessTypePicker from './BusinessTypePicker';
@@ -19,9 +19,6 @@ import BusinessTypePicker from './BusinessTypePicker';
 type TypeBusinessOnyxProps = {
     /** Reimbursement account from ONYX */
     reimbursementAccount: OnyxEntry<ReimbursementAccount>;
-
-    /** The draft values of the bank account being setup */
-    reimbursementAccountDraft: OnyxEntry<ReimbursementAccountDraft>;
 };
 
 type TypeBusinessProps = TypeBusinessOnyxProps & SubStepProps;
@@ -29,12 +26,12 @@ type TypeBusinessProps = TypeBusinessOnyxProps & SubStepProps;
 const COMPANY_INCORPORATION_TYPE_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.INCORPORATION_TYPE;
 const STEP_FIELDS = [COMPANY_INCORPORATION_TYPE_KEY];
 
-function TypeBusiness({reimbursementAccount, reimbursementAccountDraft, onNext, isEditing}: TypeBusinessProps) {
+function TypeBusiness({reimbursementAccount, onNext, isEditing}: TypeBusinessProps) {
     const {translate} = useLocalize();
     const styles = useThemeStyles();
     const validate = (values: FormValues): OnyxCommon.Errors => ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
-    const defaultIncorporationType = reimbursementAccountDraft?.incorporationType ?? reimbursementAccount?.achData?.incorporationType ?? '';
+    const defaultIncorporationType = reimbursementAccount?.achData?.incorporationType ?? '';
 
     const handleSubmit = useReimbursementAccountStepFormSubmit({
         fieldIds: STEP_FIELDS,
@@ -72,8 +69,5 @@ TypeBusiness.displayName = 'TypeBusiness';
 export default withOnyx<TypeBusinessProps, TypeBusinessOnyxProps>({
     reimbursementAccount: {
         key: ONYXKEYS.REIMBURSEMENT_ACCOUNT,
-    },
-    reimbursementAccountDraft: {
-        key: ONYXKEYS.REIMBURSEMENT_ACCOUNT_DRAFT,
     },
 })(TypeBusiness);
