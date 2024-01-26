@@ -12,7 +12,7 @@ type BusinessTypeSelectorModalProps = {
     /** Whether the modal is visible */
     isVisible: boolean;
 
-    /** State value selected  */
+    /** Business type value selected  */
     currentBusinessType: string;
 
     /** Function to call when the user selects a business type */

@@ -12,7 +12,7 @@ type BusinessTypePickerProps = {
     /** Error text to display */
     errorText: string;
 
-    /** State to display */
+    /** Business type to display */
     value: string;
 
     /** Callback to call when the input changes */
@@ -49,7 +49,7 @@ function BusinessTypePicker({errorText = '', value, wrapperStyle, onInputChange,
         if (businessType.value !== value) {
             onInputChange(businessType.value);
         }
-        // If the user selects any state, call the hidePickerModal function with shouldBlur = false
+        // If the user selects any business type, call the hidePickerModal function with shouldBlur = false
         // to prevent the onBlur function from being called.
         hidePickerModal(false);
     };
@@ -62,7 +62,7 @@ function BusinessTypePicker({errorText = '', value, wrapperStyle, onInputChange,
             <MenuItemWithTopDescription
                 shouldShowRightIcon
                 title={title}
-                description={label || translate('common.state')}
+                description={label}
                 descriptionTextStyle={descStyle}
                 onPress={showPickerModal}
                 wrapperStyle={wrapperStyle}
