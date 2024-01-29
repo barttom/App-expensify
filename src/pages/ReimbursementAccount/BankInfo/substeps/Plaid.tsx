@@ -5,6 +5,7 @@ import type {OnyxEntry} from 'react-native-onyx/lib/types';
 import AddPlaidBankAccount from '@components/AddPlaidBankAccount';
 import FormProvider from '@components/Form/FormProvider';
 import InputWrapper from '@components/Form/InputWrapper';
+import type {OnyxFormValuesFields} from '@components/Form/types';
 import useLocalize from '@hooks/useLocalize';
 import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
@@ -28,26 +29,23 @@ type PlaidOnyxProps = {
 
 type PlaidProps = PlaidOnyxProps & SubStepProps;
 
-type ValuesType = {
-    selectedPlaidAccountID: string;
-};
-
 const BANK_INFO_STEP_KEYS = CONST.BANK_ACCOUNT.BANK_INFO_STEP.INPUT_KEY;
+
+const validate = (values: OnyxFormValuesFields<ONYXKEYS.FORMS.REIMBURSEMENT_ACCOUNT_FORM_DRAFT>): Errors => {
+    const errorFields: Errors = {};
+
+    if (!values.selectedPlaidAccountID) {
+        errorFields.selectedPlaidAccountID = 'bankAccount.error.youNeedToSelectAnOption';
+    }
+
+    return errorFields;
+};
 
 function Plaid({reimbursementAccount, reimbursementAccountDraft, onNext, plaidData}: PlaidProps) {
     const {translate} = useLocalize();
     const styles = useThemeStyles();
     const isFocused = useIsFocused();
     const selectedPlaidAccountID = reimbursementAccountDraft?.[BANK_INFO_STEP_KEYS.PLAID_ACCOUNT_ID] ?? '';
-
-    const validate = useCallback((values: ValuesType): Errors => {
-        const errorFields: Errors = {};
-        if (!values.selectedPlaidAccountID) {
-            errorFields.selectedPlaidAccountID = 'bankAccount.error.youNeedToSelectAnOption';
-        }
-
-        return errorFields;
-    }, []);
 
     useEffect(() => {
         const plaidBankAccounts = plaidData?.bankAccounts ?? [];

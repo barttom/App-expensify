@@ -51,10 +51,16 @@ type InputWrapperProps<TInput extends ValidInputs> = Omit<BaseInputProps, 'ref'>
 type ExcludeDraft<T> = T extends `${string}Draft` ? never : T;
 type OnyxFormKeyWithoutDraft = ExcludeDraft<OnyxFormKey>;
 
+type DraftOnly<T> = T extends `${string}Draft` ? T : never;
+type OnyxFormKeyOnlyDraft = DraftOnly<OnyxFormKey>;
+
+type OnyxDraftFormValues<TOnyxKey extends OnyxFormKeyOnlyDraft & keyof OnyxValues = OnyxFormKeyOnlyDraft> = OnyxValues[TOnyxKey];
+type OnyxDraftFormValuesFields<TOnyxKey extends OnyxFormKeyOnlyDraft & keyof OnyxValues = OnyxFormKeyOnlyDraft> = Omit<OnyxFormValues<TOnyxKey>, keyof BaseForm>;
+
 type OnyxFormValues<TOnyxKey extends OnyxFormKey & keyof OnyxValues = OnyxFormKey> = OnyxValues[TOnyxKey];
 type OnyxFormValuesFields<TOnyxKey extends OnyxFormKey & keyof OnyxValues = OnyxFormKey> = Omit<OnyxFormValues<TOnyxKey>, keyof BaseForm>;
 
-type FormProps<TFormID extends OnyxFormKey = OnyxFormKey> = {
+type FormProps<TFormID extends OnyxFormKeyWithoutDraft = OnyxFormKeyWithoutDraft> = {
     /** A unique Onyx key identifying the form */
     formID: TFormID;
 
@@ -90,4 +96,18 @@ type RegisterInput = <TInputProps extends BaseInputProps>(inputID: keyof Form, i
 
 type InputRefs = Record<string, MutableRefObject<BaseInputProps>>;
 
-export type {InputWrapperProps, FormProps, RegisterInput, ValidInputs, BaseInputProps, ValueTypeKey, OnyxFormValues, OnyxFormValuesFields, InputRefs, OnyxFormKeyWithoutDraft};
+export type {
+    InputWrapperProps,
+    FormProps,
+    RegisterInput,
+    ValidInputs,
+    BaseInputProps,
+    ValueTypeKey,
+    OnyxFormValues,
+    OnyxFormValuesFields,
+    InputRefs,
+    OnyxFormKeyWithoutDraft,
+    OnyxFormKeyOnlyDraft,
+    OnyxDraftFormValues,
+    OnyxDraftFormValuesFields,
+};
