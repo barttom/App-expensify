@@ -31,7 +31,7 @@ type PlaidProps = PlaidOnyxProps & SubStepProps;
 
 const BANK_INFO_STEP_KEYS = CONST.BANK_ACCOUNT.BANK_INFO_STEP.INPUT_KEY;
 
-const validate = (values: OnyxFormValuesFields<ONYXKEYS.FORMS.REIMBURSEMENT_ACCOUNT_FORM_DRAFT>): Errors => {
+const validate = (values: OnyxFormValuesFields<CONST.FORMS.REIMBURSEMENT_ACCOUNT_FORM_DRAFT>): Errors => {
     const errorFields: Errors = {};
 
     if (!values.selectedPlaidAccountID) {
