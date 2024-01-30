@@ -1,7 +1,6 @@
 import type {OnyxFormValuesFields} from '@components/Form/types';
 import type ONYXKEYS from '@src/ONYXKEYS';
 import type Form from './Form';
-import type * as OnyxTypes from './index';
 
 type OnfidoData = Record<string, unknown>;
 type ReimbursementAccountDraftValues = OnyxFormValuesFields<typeof ONYXKEYS.FORMS.REIMBURSEMENT_ACCOUNT_FORM_DRAFT>;

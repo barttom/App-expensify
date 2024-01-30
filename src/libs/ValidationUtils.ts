@@ -6,7 +6,6 @@ import isObject from 'lodash/isObject';
 import type {OnyxFormValuesFields} from '@components/Form/types';
 import CONST from '@src/CONST';
 import type {Report} from '@src/types/onyx';
-import type * as OnyxCommon from '@src/types/onyx/OnyxCommon';
 import * as CardUtils from './CardUtils';
 import DateUtils from './DateUtils';
 import * as LoginUtils from './LoginUtils';

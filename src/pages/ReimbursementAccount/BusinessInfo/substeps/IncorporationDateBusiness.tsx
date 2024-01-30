@@ -63,10 +63,10 @@ function IncorporationDateBusiness({reimbursementAccount, reimbursementAccountDr
             submitButtonStyles={[styles.pb5, styles.mb0]}
         >
             <Text style={[styles.textHeadline, styles.mb3]}>{translate('businessInfoStep.selectYourCompanysIncorporationDate')}</Text>
-            <InputWrapper
+            {/* @ts-expect-error TODO: Remove this once DatePicker (https://github.com/Expensify/App/issues/25148) is migrated to TypeScript. */}
+            <InputWrapper<unknown>
                 InputComponent={DatePicker}
                 inputID={COMPANY_INCORPORATION_DATE_KEY}
-                // @ts-expect-error TODO: Remove this once DatePicker is migrated to TypeScript
                 label={translate('businessInfoStep.incorporationDate')}
                 containerStyles={[styles.mt4]}
                 placeholder={translate('businessInfoStep.incorporationDatePlaceholder')}

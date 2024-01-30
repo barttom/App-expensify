@@ -15,7 +15,6 @@ import HelpLinks from '@pages/ReimbursementAccount/PersonalInfo/HelpLinks';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {ReimbursementAccount} from '@src/types/onyx';
-import type {FormValues} from '@src/types/onyx/Form';
 import type * as OnyxCommon from '@src/types/onyx/OnyxCommon';
 import type {ReimbursementAccountDraftValues} from '@src/types/onyx/ReimbursementAccountDraft';
 

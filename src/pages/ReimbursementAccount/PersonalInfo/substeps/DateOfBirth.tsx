@@ -70,9 +70,9 @@ function DateOfBirth({reimbursementAccount, reimbursementAccountDraft, onNext, i
             submitButtonStyles={[styles.pb5, styles.mb0]}
         >
             <Text style={[styles.textHeadline, styles.mb3]}>{translate('personalInfoStep.enterYourDateOfBirth')}</Text>
-            <InputWrapper
+            {/* @ts-expect-error TODO: Remove this once DatePicker (https://github.com/Expensify/App/issues/25148) is migrated to TypeScript. */}
+            <InputWrapper<unknown>
                 InputComponent={DatePicker}
-                formID={ONYXKEYS.FORMS.REIMBURSEMENT_ACCOUNT_FORM}
                 inputID={PERSONAL_INFO_DOB_KEY}
                 label={translate('common.dob')}
                 containerStyles={[styles.mt6]}

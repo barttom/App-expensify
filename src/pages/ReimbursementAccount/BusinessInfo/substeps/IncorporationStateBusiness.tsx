@@ -50,7 +50,6 @@ function IncorporationStateBusiness({reimbursementAccount, onNext, isEditing}: I
             <Text style={[styles.textHeadline, styles.ph5]}>{translate('businessInfoStep.pleaseSelectTheStateYourCompanyWasIncorporatedIn')}</Text>
             <InputWrapper
                 InputComponent={StatePicker}
-                fomrID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
                 inputID={COMPANY_INCORPORATION_STATE_KEY}
                 label={translate('businessInfoStep.incorporationState')}
                 defaultValue={defaultCompanyIncorporationState}

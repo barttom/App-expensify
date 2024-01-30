@@ -2,7 +2,6 @@ import {useCallback} from 'react';
 import * as FormActions from '@userActions/FormActions';
 import type {OnyxFormKeyWithoutDraft} from '@userActions/FormActions';
 import ONYXKEYS from '@src/ONYXKEYS';
-import type {FormValues} from '@src/types/onyx/Form';
 import type {ReimbursementAccountDraftValues} from '@src/types/onyx/ReimbursementAccountDraft';
 import type {SubStepProps} from './useSubStep/types';
 

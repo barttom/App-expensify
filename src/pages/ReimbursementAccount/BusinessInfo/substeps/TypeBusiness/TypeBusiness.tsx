@@ -57,6 +57,8 @@ function TypeBusiness({reimbursementAccount, onNext, isEditing}: TypeBusinessPro
                 shouldSaveDraft={!isEditing}
                 wrapperStyle={[styles.ph5, styles.mt4]}
                 onInputChange={() => {}}
+                value=""
+                onBlur={() => {}}
             />
         </FormProvider>
     );
