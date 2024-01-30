@@ -34,15 +34,15 @@ const STEP_FIELDS = [
 const validate = (values: ReimbursementAccountDraftValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
-    if (!ValidationUtils.isRequiredFulfilled(values.acceptTermsAndConditions ?? false)) {
+    if (!ValidationUtils.isRequiredFulfilled(values.acceptTermsAndConditions)) {
         errors.acceptTermsAndConditions = 'common.error.acceptTerms';
     }
 
-    if (!ValidationUtils.isRequiredFulfilled(values.certifyTrueInformation ?? false)) {
+    if (!ValidationUtils.isRequiredFulfilled(values.certifyTrueInformation)) {
         errors.certifyTrueInformation = 'completeVerificationStep.certifyTrueAndAccurateError';
     }
 
-    if (!ValidationUtils.isRequiredFulfilled(values.isAuthorizedToUseBankAccount ?? false)) {
+    if (!ValidationUtils.isRequiredFulfilled(values.isAuthorizedToUseBankAccount)) {
         errors.isAuthorizedToUseBankAccount = 'completeVerificationStep.isAuthorizedToUseBankAccountError';
     }
 
