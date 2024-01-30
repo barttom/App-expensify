@@ -3,6 +3,7 @@ import {URL_REGEX_WITH_REQUIRED_PROTOCOL} from 'expensify-common/lib/Url';
 import isDate from 'lodash/isDate';
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
+import type {OnyxFormValuesFields} from '@components/Form/types';
 import CONST from '@src/CONST';
 import type {Report} from '@src/types/onyx';
 import type * as OnyxCommon from '@src/types/onyx/OnyxCommon';
@@ -73,7 +74,7 @@ function isValidPastDate(date: string | Date): boolean {
 /**
  * Used to validate a value that is "required".
  */
-function isRequiredFulfilled(value: string | Date | unknown[] | Record<string, unknown>): boolean {
+function isRequiredFulfilled(value: string | boolean | Date | unknown[] | Record<string, unknown>): boolean {
     if (typeof value === 'string') {
         return !StringUtils.isEmptyString(value);
     }
@@ -92,11 +93,11 @@ type GetFieldRequiredErrorsReturn<K extends string[]> = {[P in K[number]]: strin
 /**
  * Used to add requiredField error to the fields passed.
  */
-function getFieldRequiredErrors<T extends OnyxCommon.Errors, K extends string[]>(values: T, requiredFields: K): GetFieldRequiredErrorsReturn<K> {
+function getFieldRequiredErrors<T extends OnyxFormValuesFields, K extends string[]>(values: T, requiredFields: K): GetFieldRequiredErrorsReturn<K> {
     const errors: GetFieldRequiredErrorsReturn<K> = {} as GetFieldRequiredErrorsReturn<K>;
 
     requiredFields.forEach((fieldKey: K[number]) => {
-        if (isRequiredFulfilled(values[fieldKey])) {
+        if (isRequiredFulfilled(values[fieldKey as keyof OnyxFormValuesFields])) {
             return;
         }
 

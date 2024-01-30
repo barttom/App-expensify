@@ -70,7 +70,7 @@ function CompanyOwnersListUBO({
 
     const isLoading = reimbursementAccount?.isLoading ?? false;
     const requestorData = getSubstepValues(REQUESTOR_PERSONAL_INFO_KEYS, {}, reimbursementAccount);
-    const error = ErrorUtils.getLatestErrorMessage(reimbursementAccount);
+    const error = reimbursementAccount ? ErrorUtils.getLatestErrorMessage(reimbursementAccount) : '';
 
     const extraBeneficialOwners =
         isAnyoneElseUBO &&

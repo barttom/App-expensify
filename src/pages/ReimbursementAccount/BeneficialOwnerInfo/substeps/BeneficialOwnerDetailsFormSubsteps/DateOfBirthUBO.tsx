@@ -14,7 +14,7 @@ import * as ValidationUtils from '@libs/ValidationUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {ReimbursementAccountFormDraft} from '@src/types/onyx';
-import type {BeneficialOwnerDraftData} from '@src/types/onyx/ReimbursementAccountDraft';
+import type {BeneficialOwnerDraftData, ReimbursementAccountDraftValues} from '@src/types/onyx/ReimbursementAccountDraft';
 
 const DOB = CONST.BANK_ACCOUNT.BENEFICIAL_OWNER_INFO_STEP.BENEFICIAL_OWNER_DATA.DOB;
 const BENEFICIAL_OWNER_PREFIX = CONST.BANK_ACCOUNT.BENEFICIAL_OWNER_INFO_STEP.BENEFICIAL_OWNER_DATA.PREFIX;
@@ -38,7 +38,7 @@ function DateOfBirthUBO({reimbursementAccountDraft, onNext, isEditing, beneficia
     const minDate = subYears(new Date(), CONST.DATE_BIRTH.MAX_AGE);
     const maxDate = subYears(new Date(), CONST.DATE_BIRTH.MIN_AGE_FOR_PAYMENT);
 
-    const validate = (values: FormValues) => {
+    const validate = (values: ReimbursementAccountDraftValues) => {
         const errors = ValidationUtils.getFieldRequiredErrors(values, stepFields);
 
         if (values[dobInputID]) {

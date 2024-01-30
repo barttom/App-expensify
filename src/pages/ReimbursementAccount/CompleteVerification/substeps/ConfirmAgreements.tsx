@@ -14,8 +14,8 @@ import * as ValidationUtils from '@libs/ValidationUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {ReimbursementAccount} from '@src/types/onyx';
-import type {FormValues} from '@src/types/onyx/Form';
 import type * as OnyxCommon from '@src/types/onyx/OnyxCommon';
+import type {ReimbursementAccountDraftValues} from '@src/types/onyx/ReimbursementAccountDraft';
 
 type ConfirmAgreementsOnyxProps = {
     /** Reimbursement account from ONYX */
@@ -31,18 +31,18 @@ const STEP_FIELDS = [
     CONST.BANK_ACCOUNT.COMPLETE_VERIFICATION.INPUT_KEY.CERTIFY_TRUE_INFORMATION,
 ];
 
-const validate = (values: FormValues): OnyxCommon.Errors => {
+const validate = (values: ReimbursementAccountDraftValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
-    if (!ValidationUtils.isRequiredFulfilled(values.acceptTermsAndConditions)) {
+    if (!ValidationUtils.isRequiredFulfilled(values.acceptTermsAndConditions ?? false)) {
         errors.acceptTermsAndConditions = 'common.error.acceptTerms';
     }
 
-    if (!ValidationUtils.isRequiredFulfilled(values.certifyTrueInformation)) {
+    if (!ValidationUtils.isRequiredFulfilled(values.certifyTrueInformation ?? false)) {
         errors.certifyTrueInformation = 'completeVerificationStep.certifyTrueAndAccurateError';
     }
 
-    if (!ValidationUtils.isRequiredFulfilled(values.isAuthorizedToUseBankAccount)) {
+    if (!ValidationUtils.isRequiredFulfilled(values.isAuthorizedToUseBankAccount ?? false)) {
         errors.isAuthorizedToUseBankAccount = 'completeVerificationStep.isAuthorizedToUseBankAccountError';
     }
 

@@ -13,8 +13,8 @@ import * as ValidationUtils from '@libs/ValidationUtils';
 import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {ReimbursementAccount, ReimbursementAccountFormDraft} from '@src/types/onyx';
-import type {FormValues} from '@src/types/onyx/Form';
 import type * as OnyxCommon from '@src/types/onyx/OnyxCommon';
+import type {ReimbursementAccountDraftValues} from '@src/types/onyx/ReimbursementAccountDraft';
 
 type IncorporationDateBusinessOnyxProps = {
     /** Reimbursement account from ONYX */
@@ -29,7 +29,7 @@ type IncorporationDateBusinessProps = IncorporationDateBusinessOnyxProps & SubSt
 const COMPANY_INCORPORATION_DATE_KEY = CONST.BANK_ACCOUNT.BUSINESS_INFO_STEP.INPUT_KEY.INCORPORATION_DATE;
 const STEP_FIELDS = [COMPANY_INCORPORATION_DATE_KEY];
 
-const validate = (values: FormValues): OnyxCommon.Errors => {
+const validate = (values: ReimbursementAccountDraftValues): OnyxCommon.Errors => {
     const errors = ValidationUtils.getFieldRequiredErrors(values, STEP_FIELDS);
 
     if (values.incorporationDate && !ValidationUtils.isValidDate(values.incorporationDate)) {
@@ -66,6 +66,7 @@ function IncorporationDateBusiness({reimbursementAccount, reimbursementAccountDr
             <InputWrapper
                 InputComponent={DatePicker}
                 inputID={COMPANY_INCORPORATION_DATE_KEY}
+                // @ts-expect-error TODO: Remove this once DatePicker is migrated to TypeScript
                 label={translate('businessInfoStep.incorporationDate')}
                 containerStyles={[styles.mt4]}
                 placeholder={translate('businessInfoStep.incorporationDatePlaceholder')}

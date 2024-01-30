@@ -5,7 +5,6 @@ import type {OnyxEntry} from 'react-native-onyx/lib/types';
 import AddPlaidBankAccount from '@components/AddPlaidBankAccount';
 import FormProvider from '@components/Form/FormProvider';
 import InputWrapper from '@components/Form/InputWrapper';
-import type {OnyxFormValuesFields} from '@components/Form/types';
 import useLocalize from '@hooks/useLocalize';
 import type {SubStepProps} from '@hooks/useSubStep/types';
 import useThemeStyles from '@hooks/useThemeStyles';
@@ -15,6 +14,7 @@ import CONST from '@src/CONST';
 import ONYXKEYS from '@src/ONYXKEYS';
 import type {PlaidData, ReimbursementAccount, ReimbursementAccountFormDraft} from '@src/types/onyx';
 import type {Errors} from '@src/types/onyx/OnyxCommon';
+import type {ReimbursementAccountDraftValues} from '@src/types/onyx/ReimbursementAccountDraft';
 
 type PlaidOnyxProps = {
     /** Reimbursement account from ONYX */
@@ -31,7 +31,7 @@ type PlaidProps = PlaidOnyxProps & SubStepProps;
 
 const BANK_INFO_STEP_KEYS = CONST.BANK_ACCOUNT.BANK_INFO_STEP.INPUT_KEY;
 
-const validate = (values: OnyxFormValuesFields<typeof ONYXKEYS.FORMS.REIMBURSEMENT_ACCOUNT_FORM_DRAFT>): Errors => {
+const validate = (values: ReimbursementAccountDraftValues): Errors => {
     const errorFields: Errors = {};
 
     if (!values.selectedPlaidAccountID) {
@@ -86,6 +86,7 @@ function Plaid({reimbursementAccount, reimbursementAccountDraft, onNext, plaidDa
             style={[styles.mh5, styles.flexGrow1]}
         >
             <InputWrapper
+                // @ts-expect-error TODO: Remove this once AddPlaidBankAccount (https://github.com/Expensify/App/issues/25119) is migrated to TypeScript
                 InputComponent={AddPlaidBankAccount}
                 text={translate('bankAccount.plaidBodyCopy')}
                 onSelect={(plaidAccountID: string) => {
