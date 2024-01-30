@@ -25,9 +25,6 @@ type FormWrapperOnyxProps = {
 type FormWrapperProps = ChildrenProps &
     FormWrapperOnyxProps &
     FormProps & {
-        /** Submit button styles */
-        submitButtonStyles?: StyleProp<ViewStyle>;
-
         /** Server side errors keyed by microtime */
         errors: Errors;
 

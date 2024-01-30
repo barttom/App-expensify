@@ -67,6 +67,9 @@ type FormProps<TFormID extends OnyxFormKeyWithoutDraft = OnyxFormKeyWithoutDraft
     /** Text to be displayed in the submit button */
     submitButtonText: string;
 
+    /** Submit button styles */
+    submitButtonStyles?: StyleProp<ViewStyle>;
+
     /** Controls the submit button's visibility */
     isSubmitButtonVisible?: boolean;
 
