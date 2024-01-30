@@ -56,9 +56,6 @@ function TypeBusiness({reimbursementAccount, onNext, isEditing}: TypeBusinessPro
                 defaultValue={defaultIncorporationType}
                 shouldSaveDraft={!isEditing}
                 wrapperStyle={[styles.ph5, styles.mt4]}
-                onInputChange={() => {}}
-                value=""
-                onBlur={() => {}}
             />
         </FormProvider>
     );
