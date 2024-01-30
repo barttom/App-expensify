@@ -48,7 +48,7 @@ function IncorporationStateBusiness({reimbursementAccount, onNext, isEditing}: I
             style={[styles.mh0, styles.flexGrow1]}
             submitButtonStyles={[styles.ph5, styles.pb5, styles.mb0]}
         >
-            <Text style={[styles.textHeadline, styles.ph5]}>{translate('businessInfoStep.pleaseSelectTheStateYourCompanyWasIncorporatedIn')}</Text>
+            <Text style={[styles.textHeadline, styles.ph5, styles.mt5]}>{translate('businessInfoStep.pleaseSelectTheStateYourCompanyWasIncorporatedIn')}</Text>
             <InputWrapper
                 InputComponent={StatePicker}
                 fomrID={ONYXKEYS.REIMBURSEMENT_ACCOUNT}
@@ -56,7 +56,7 @@ function IncorporationStateBusiness({reimbursementAccount, onNext, isEditing}: I
                 label={translate('businessInfoStep.incorporationState')}
                 defaultValue={defaultCompanyIncorporationState}
                 shouldSaveDraft={!isEditing}
-                wrapperStyle={[styles.ph5, styles.mt4]}
+                wrapperStyle={[styles.ph5, styles.mt3]}
             />
         </FormProvider>
     );

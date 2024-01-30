@@ -67,7 +67,7 @@ function DateOfBirthUBO({reimbursementAccountDraft, onNext, isEditing, beneficia
             style={[styles.mh5, styles.flexGrow2, styles.justifyContentBetween]}
             submitButtonStyles={[styles.pb5, styles.mb0]}
         >
-            <Text style={[styles.textHeadline, styles.mb3]}>{translate('beneficialOwnerInfoStep.enterTheDateOfBirthOfTheOwner')}</Text>
+            <Text style={[styles.textHeadline, styles.mt5]}>{translate('beneficialOwnerInfoStep.enterTheDateOfBirthOfTheOwner')}</Text>
             <InputWrapper
                 InputComponent={DatePicker}
                 inputID={dobInputID}

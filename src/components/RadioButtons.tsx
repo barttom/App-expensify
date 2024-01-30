@@ -24,12 +24,12 @@ function RadioButtons({items, onPress, defaultCheckedValue = ''}: RadioButtonsPr
     const [checkedValue, setCheckedValue] = useState(defaultCheckedValue);
 
     return (
-        <View style={styles.mb3}>
+        <View style={styles.mt6}>
             {items.map((item) => (
                 <RadioButtonWithLabel
                     key={item.value}
                     isChecked={item.value === checkedValue}
-                    style={styles.mt4}
+                    style={styles.mb6}
                     onPress={() => {
                         setCheckedValue(item.value);
                         return onPress(item.value);

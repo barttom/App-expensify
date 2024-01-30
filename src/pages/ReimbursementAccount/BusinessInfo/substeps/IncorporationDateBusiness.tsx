@@ -62,12 +62,12 @@ function IncorporationDateBusiness({reimbursementAccount, reimbursementAccountDr
             style={[styles.mh5, styles.flexGrow1]}
             submitButtonStyles={[styles.pb5, styles.mb0]}
         >
-            <Text style={[styles.textHeadline, styles.mb3]}>{translate('businessInfoStep.selectYourCompanysIncorporationDate')}</Text>
+            <Text style={[styles.textHeadline, styles.mt5]}>{translate('businessInfoStep.selectYourCompanysIncorporationDate')}</Text>
             <InputWrapper
                 InputComponent={DatePicker}
                 inputID={COMPANY_INCORPORATION_DATE_KEY}
                 label={translate('businessInfoStep.incorporationDate')}
-                containerStyles={[styles.mt4]}
+                containerStyles={[styles.mt6]}
                 placeholder={translate('businessInfoStep.incorporationDatePlaceholder')}
                 defaultValue={defaultCompanyIncorporationDate}
                 shouldSaveDraft={!isEditing}

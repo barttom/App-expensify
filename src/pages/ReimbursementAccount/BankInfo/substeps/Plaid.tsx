@@ -100,7 +100,6 @@ function Plaid({reimbursementAccount, reimbursementAccountDraft, onNext, plaidDa
                 selectedPlaidAccountID={selectedPlaidAccountID}
                 isDisplayedInNewVBBA
                 inputID="selectedPlaidAccountID"
-                containerStyles={[styles.mb1]}
                 inputMode={CONST.INPUT_MODE.TEXT}
                 style={[styles.mt5]}
                 defaultValue={selectedPlaidAccountID}

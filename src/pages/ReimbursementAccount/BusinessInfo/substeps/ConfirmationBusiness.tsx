@@ -63,7 +63,7 @@ function ConfirmationBusiness({reimbursementAccount, reimbursementAccountDraft, 
             style={[styles.pt0]}
         >
             <ScrollView contentContainerStyle={styles.flexGrow1}>
-                <Text style={[styles.textHeadline, styles.ph5, styles.mb0]}>{translate('businessInfoStep.letsDoubleCheck')}</Text>
+                <Text style={[styles.textHeadline, styles.ph5, styles.mt5, styles.mb3]}>{translate('businessInfoStep.letsDoubleCheck')}</Text>
                 <MenuItemWithTopDescription
                     description={translate('businessInfoStep.businessName')}
                     title={values[BUSINESS_INFO_STEP_KEYS.COMPANY_NAME]}
@@ -148,19 +148,10 @@ function ConfirmationBusiness({reimbursementAccount, reimbursementAccountDraft, 
                                 <TextLink href={CONST.LIST_OF_RESTRICTED_BUSINESSES}>{`${translate('businessInfoStep.listOfRestrictedBusinesses')}.`}</TextLink>
                             </Text>
                         )}
-                        style={[styles.mt4]}
+                        style={[styles.mt3]}
                         shouldSaveDraft
                     />
                 </FormProvider>
-                <View style={[styles.ph5, styles.mtAuto]}>
-                    {error.length > 0 && (
-                        <DotIndicatorMessage
-                            textStyles={[styles.formError]}
-                            type="error"
-                            messages={{error}}
-                        />
-                    )}
-                </View>
             </ScrollView>
         </ScreenWrapper>
     );
