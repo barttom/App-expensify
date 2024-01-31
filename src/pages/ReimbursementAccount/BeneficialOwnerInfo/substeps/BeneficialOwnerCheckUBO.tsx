@@ -60,6 +60,7 @@ function BeneficialOwnerCheckUBO({title, onSelectedValue, defaultValue}: Benefic
                     items={options}
                     onPress={handleSelectUBOValue}
                     defaultCheckedValue={defaultValue.toString()}
+                    radioButtonStyle={[styles.mb6]}
                 />
             </FormProvider>
         </ScreenWrapper>
