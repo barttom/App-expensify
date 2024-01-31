@@ -74,7 +74,7 @@ function Manual({reimbursementAccount, onNext}: ManualProps) {
             style={[styles.mh5, styles.flexGrow1]}
         >
             <Text style={[styles.textHeadline, styles.mb3, styles.mt5]}>{translate('bankAccount.manuallyAdd')}</Text>
-            <Text style={[styles.mb5, styles.textLabel, styles.textSupporting]}>{translate('bankAccount.checkHelpLine')}</Text>
+            <Text style={[styles.mb5, styles.textSupporting]}>{translate('bankAccount.checkHelpLine')}</Text>
             <ExampleCheckImage />
             <InputWrapper
                 InputComponent={TextInput}

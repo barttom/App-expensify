@@ -59,7 +59,7 @@ function SocialSecurityNumberUBO({reimbursementAccountDraft, onNext, isEditing, 
         >
             <View>
                 <Text style={[styles.textHeadline, styles.mt5, styles.mb3]}>{translate('beneficialOwnerInfoStep.enterTheLast4')}</Text>
-                <Text style={[styles.textLabel, styles.textSupporting]}>{translate('beneficialOwnerInfoStep.dontWorry')}</Text>
+                <Text style={[styles.textSupporting]}>{translate('beneficialOwnerInfoStep.dontWorry')}</Text>
                 <View style={[styles.flex1]}>
                     <InputWrapper
                         InputComponent={TextInput}

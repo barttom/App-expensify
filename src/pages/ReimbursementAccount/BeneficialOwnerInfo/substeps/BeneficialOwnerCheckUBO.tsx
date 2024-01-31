@@ -55,7 +55,7 @@ function BeneficialOwnerCheckUBO({title, onSelectedValue, defaultValue}: Benefic
                 submitButtonStyles={[styles.pb5, styles.mb0]}
             >
                 <Text style={[styles.textHeadline, styles.mt5]}>{title}</Text>
-                <Text style={[styles.pv3, styles.textLabel, styles.textSupporting]}>{translate('beneficialOwnerInfoStep.regulationRequiresUsToVerifyTheIdentity')}</Text>
+                <Text style={[styles.pv3, styles.textSupporting]}>{translate('beneficialOwnerInfoStep.regulationRequiresUsToVerifyTheIdentity')}</Text>
                 <RadioButtons
                     items={options}
                     onPress={handleSelectUBOValue}

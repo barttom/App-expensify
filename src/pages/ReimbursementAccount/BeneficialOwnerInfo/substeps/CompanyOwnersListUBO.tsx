@@ -105,7 +105,7 @@ function CompanyOwnersListUBO({
                 <Text style={[styles.textHeadline, styles.ph5, styles.mt5]}>{translate('beneficialOwnerInfoStep.letsDoubleCheck')}</Text>
                 <Text style={[styles.p5, styles.textSupporting]}>{translate('beneficialOwnerInfoStep.regulationRequiresUsToVerifyTheIdentity')}</Text>
                 <View>
-                    <Text style={[styles.textLabelSupporting, styles.pv1, styles.ph5]}>{`${translate('beneficialOwnerInfoStep.owners')}:`}</Text>
+                    <Text style={[styles.textSupporting, styles.pv1, styles.ph5]}>{`${translate('beneficialOwnerInfoStep.owners')}:`}</Text>
                     {isUserUBO && (
                         <MenuItem
                             title={`${requestorData.firstName} ${requestorData.lastName}`}

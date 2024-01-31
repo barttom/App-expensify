@@ -4184,7 +4184,7 @@ const styles = (theme: ThemeColors) =>
         interactiveStepHeaderStepButton: {
             width: 40,
             height: 40,
-            borderWidth: 1,
+            borderWidth: 2,
             borderRadius: 20,
             borderColor: theme.borderFocus,
             justifyContent: 'center',
