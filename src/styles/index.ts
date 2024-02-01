@@ -4249,6 +4249,15 @@ const styles = (theme: ThemeColors) =>
             color: theme.text,
             textAlignVertical: 'center',
         },
+
+        textHeadlineLineHeightXXL: {
+            ...headlineFont,
+            ...whiteSpace.preWrap,
+            color: theme.heading,
+            fontSize: variables.fontSizeXLarge,
+            lineHeight: variables.lineHeightXXLarge,
+        },
+
         colorSchemeStyle: (colorScheme: ColorScheme) => ({colorScheme}),
 
         updateAnimation: {
