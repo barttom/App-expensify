@@ -15,7 +15,7 @@ import type {Errors} from '@src/types/onyx/OnyxCommon';
 import {isEmptyObject} from '@src/types/utils/EmptyObject';
 import FormContext from './FormContext';
 import FormWrapper from './FormWrapper';
-import type {BaseInputProps, FormProps, InputRefs, OnyxDraftFormValuesFields, OnyxFormKeyWithoutDraft, OnyxFormValues, OnyxFormValuesFields, RegisterInput, ValueTypeKey} from './types';
+import type {BaseInputProps, FormProps, InputRefs, OnyxFormKeyWithoutDraft, OnyxFormValues, OnyxFormValuesFields, RegisterInput, ValueTypeKey} from './types';
 
 // In order to prevent Checkbox focus loss when the user are focusing a TextInput and proceeds to toggle a CheckBox in web and mobile web.
 // 200ms delay was chosen as a result of empirical testing.
@@ -54,7 +54,7 @@ type FormProviderProps<TFormID extends OnyxFormKeyWithoutDraft = OnyxFormKeyWith
         children: ((props: {inputValues: OnyxFormValues<TFormID>}) => ReactNode) | ReactNode;
 
         /** Callback to validate the form */
-        validate?: (values: OnyxFormValuesFields<TFormID> & OnyxDraftFormValuesFields<`${TFormID}Draft`>) => Errors;
+        validate?: (values: OnyxFormValuesFields<TFormID>) => Errors;
 
         /** Should validate function be called when input loose focus */
         shouldValidateOnBlur?: boolean;
