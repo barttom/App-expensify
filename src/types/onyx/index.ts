@@ -50,7 +50,6 @@ import type RecentlyUsedTags from './RecentlyUsedTags';
 import type RecentWaypoint from './RecentWaypoint';
 import type ReimbursementAccount from './ReimbursementAccount';
 import type ReimbursementAccountDraft from './ReimbursementAccountDraft';
-import type {ReimbursementAccountFormDraft} from './ReimbursementAccountDraft';
 import type Report from './Report';
 import type {ReportActions} from './ReportAction';
 import type ReportAction from './ReportAction';
@@ -125,7 +124,7 @@ export type {
     RecentlyUsedTags,
     ReimbursementAccount,
     ReimbursementAccountDraft,
-    ReimbursementAccountFormDraft,
+    ReimbursementAccountForm,
     Report,
     ReportAction,
     ReportActionReactions,
@@ -162,5 +161,4 @@ export type {
     IntroSchoolPrincipalForm,
     PrivateNotesForm,
     ReportFieldEditForm,
-    ReimbursementAccountForm,
 };
