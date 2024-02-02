@@ -48,7 +48,7 @@ type FormProviderOnyxProps = {
     network: OnyxEntry<Network>;
 };
 
-type FormProviderProps<TFormID extends OnyxFormKeyWithoutDraft = OnyxFormKeyWithoutDraft> = FormProviderOnyxProps &
+type FormProviderProps<TFormID extends OnyxFormKey = OnyxFormKey> = FormProviderOnyxProps &
     FormProps<TFormID> & {
         /** Children to render. */
         children: ((props: {inputValues: OnyxFormValues<TFormID>}) => ReactNode) | ReactNode;
@@ -355,4 +355,4 @@ export default withOnyx<FormProviderProps, FormProviderOnyxProps>({
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-explicit-any
         key: (props) => `${props.formID}Draft` as any,
     },
-})(forwardRef(FormProvider)) as <TFormID extends OnyxFormKeyWithoutDraft>(props: Omit<FormProviderProps<TFormID>, keyof FormProviderOnyxProps>) => ReactNode;
+})(forwardRef(FormProvider)) as <TFormID extends OnyxFormKey>(props: Omit<FormProviderProps<TFormID>, keyof FormProviderOnyxProps>) => ReactNode;
