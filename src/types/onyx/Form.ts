@@ -63,8 +63,6 @@ type ReportFieldEditForm = Form<Record<string, string>>;
 
 type ReimbursementAccountForm = Form<ReimbursementAccountDraft>;
 
-type FormValues = Record<string, string>;
-
 export default Form;
 
 export type {
@@ -79,6 +77,5 @@ export type {
     IntroSchoolPrincipalForm,
     PersonalBankAccountForm,
     ReportFieldEditForm,
-    FormValues,
     ReimbursementAccountForm,
 };
