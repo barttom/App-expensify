@@ -1,6 +1,7 @@
 import type * as OnyxCommon from './OnyxCommon';
 import type PersonalBankAccount from './PersonalBankAccount';
 import type {OnfidoData} from './ReimbursementAccountDraft';
+import type ReimbursementAccountDraft from './ReimbursementAccountDraft';
 
 type FormValueType = string | boolean | Date | OnyxCommon.Errors | OnfidoData | string[] | number;
 
@@ -58,9 +59,18 @@ type PrivateNotesForm = Form<{
 
 type PersonalBankAccountForm = Form<PersonalBankAccount>;
 
+type WorkspaceSettingsForm = Form<{
+    name: string;
+}>;
+
 type ReportFieldEditForm = Form<Record<string, string>>;
 
-type FormValues = Record<string, string>;
+type CloseAccountForm = Form<{
+    reasonForLeaving: string;
+    phoneOrEmail: string;
+}>;
+
+type ReimbursementAccountForm = Form<ReimbursementAccountDraft>;
 
 export default Form;
 
@@ -75,6 +85,8 @@ export type {
     IKnowATeacherForm,
     IntroSchoolPrincipalForm,
     PersonalBankAccountForm,
+    WorkspaceSettingsForm,
     ReportFieldEditForm,
-    FormValues,
+    CloseAccountForm,
+    ReimbursementAccountForm,
 };
