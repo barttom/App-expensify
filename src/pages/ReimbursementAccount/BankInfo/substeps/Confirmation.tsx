@@ -39,9 +39,6 @@ function Confirmation({reimbursementAccount, reimbursementAccountDraft, onNext, 
     const error = ErrorUtils.getLatestErrorMessage(reimbursementAccount ?? {});
 
     const handleModifyAccountNumbers = () => {
-        if (bankAccountID) {
-            return;
-        }
         onMove(0);
     };
 
