@@ -3269,7 +3269,7 @@ const CONST = {
         PERSONAL_INFO: {
             LEGAL_NAME: 0,
             DATE_OF_BIRTH: 1,
-            SSN_NUMBER: 2,
+            SSN: 2,
             ADDRESS: 3,
         },
         BUSINESS_INFO: {
@@ -3285,7 +3285,7 @@ const CONST = {
         UBO: {
             LEGAL_NAME: 0,
             DATE_OF_BIRTH: 1,
-            SSN_NUMBER: 2,
+            SSN: 2,
             ADDRESS: 3,
         },
     },

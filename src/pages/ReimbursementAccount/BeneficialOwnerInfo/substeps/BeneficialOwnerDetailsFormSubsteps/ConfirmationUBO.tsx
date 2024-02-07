@@ -63,7 +63,7 @@ function ConfirmationUBO({reimbursementAccount, reimbursementAccountDraft, onNex
                     title={values.ssnLast4}
                     shouldShowRightIcon
                     onPress={() => {
-                        onMove(UBO_STEP_INDEXES.SSN_NUMBER);
+                        onMove(UBO_STEP_INDEXES.SSN);
                     }}
                 />
                 <MenuItemWithTopDescription

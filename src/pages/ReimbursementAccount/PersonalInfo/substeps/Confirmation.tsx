@@ -66,7 +66,7 @@ function Confirmation({reimbursementAccount, reimbursementAccountDraft, onNext, 
                     title={values[PERSONAL_INFO_STEP_KEYS.SSN_LAST_4]}
                     shouldShowRightIcon
                     onPress={() => {
-                        onMove(PERSONAL_INFO_STEP_INDEXES.SSN_NUMBER);
+                        onMove(PERSONAL_INFO_STEP_INDEXES.SSN);
                     }}
                 />
                 <MenuItemWithTopDescription
