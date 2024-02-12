@@ -2,7 +2,6 @@ import React, {useMemo, useState} from 'react';
 import FormProvider from '@components/Form/FormProvider';
 import type {Choice} from '@components/RadioButtons';
 import RadioButtons from '@components/RadioButtons';
-import ScreenWrapper from '@components/ScreenWrapper';
 import Text from '@components/Text';
 import useLocalize from '@hooks/useLocalize';
 import useThemeStyles from '@hooks/useThemeStyles';
