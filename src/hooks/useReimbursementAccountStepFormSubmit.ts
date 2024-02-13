@@ -18,7 +18,6 @@ type UseReimbursementAccountStepFormSubmitParams = Pick<SubStepProps, 'isEditing
  * @param onNext - callback
  * @param fieldIds - field IDs for particular step
  */
-
 export default function useReimbursementAccountStepFormSubmit({
     formId = ONYXKEYS.FORMS.REIMBURSEMENT_ACCOUNT_FORM,
     isEditing,
